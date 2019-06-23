@@ -5,13 +5,14 @@ extern "C" {
 }
 
 class Dac {
-	DAC_HandleTypeDef hdac ;
-	uint32_t channel ;
-	bool init_done;
+	DAC_HandleTypeDef hdac {};
+	uint32_t channel = DAC_CHANNEL_1;
+	bool init_done = false;
 	
 public:	
-	Dac();
-	void init(uint32_t channel); 	
+//	Dac();
+	void init(uint32_t channel); 
+  void set_value_rel(double value_rel);
 	void high();
 	void low();
 	uint32_t get_value();

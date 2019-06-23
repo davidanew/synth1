@@ -1,15 +1,16 @@
 #include "Dac.h"
-
+/*
 Dac::Dac(){
 	init_done = false;
 //	hdac = {0};
 	channel = 0 ;
 	
 }
+*/
 
 void Dac::init(uint32_t channel) {
 		this->channel = channel;
-		DAC_ChannelConfTypeDef sConfig = {0};
+		DAC_ChannelConfTypeDef sConfig {};
 		hdac.Instance = DAC;
 		hdac.State = HAL_DAC_STATE_RESET;					
 		HAL_DAC_MspInit(&hdac);				
@@ -29,6 +30,13 @@ void Dac::init(uint32_t channel) {
 		}
 		init_done = true;
 	}	
+
+void Dac::set_value_rel(double value_rel){
+	uint32_t dac_value = (uint32_t) ((double) 0xFFF * value_rel );
+	if (HAL_DAC_SetValue(&hdac, channel, DAC_ALIGN_12B_R, dac_value) != HAL_OK || init_done == false){
+		while(1);
+	}
+}
 
 void Dac::high(){
 	if (HAL_DAC_SetValue(&hdac, channel, DAC_ALIGN_12B_R, 0xFFF) != HAL_OK || init_done == false){
@@ -68,9 +76,5 @@ void Dac::HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
 		GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
 		GPIO_InitStruct.Pull = GPIO_NOPULL;
 		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-		
-		
-		
-		
-	}
+		}
 }

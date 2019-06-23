@@ -10,8 +10,8 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
-      <uAC6>0</uAC6>
+      <pCCUsed>6120000::V6.12::.\ARMCLANG</pCCUsed>
+      <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F446RETx</Device>
@@ -312,7 +312,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>7</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -328,14 +328,14 @@
             <uGnu>1</uGnu>
             <useXO>0</useXO>
             <v6Lang>3</v6Lang>
-            <v6LangP>1</v6LangP>
+            <v6LangP>3</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
             <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-old-style-cast</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
@@ -394,7 +394,7 @@
             </File>
             <File>
               <FileName>Dac.h</FileName>
-              <FileType>5</FileType>
+              <FileType>8</FileType>
               <FilePath>.\Dac.h</FilePath>
             </File>
             <File>
@@ -404,7 +404,7 @@
             </File>
             <File>
               <FileName>Tim.h</FileName>
-              <FileType>5</FileType>
+              <FileType>8</FileType>
               <FilePath>.\Tim.h</FilePath>
             </File>
             <File>
@@ -414,7 +414,7 @@
             </File>
             <File>
               <FileName>Hal.h</FileName>
-              <FileType>5</FileType>
+              <FileType>8</FileType>
               <FilePath>.\Hal.h</FilePath>
             </File>
             <File>
@@ -424,7 +424,7 @@
             </File>
             <File>
               <FileName>IRQ.h</FileName>
-              <FileType>5</FileType>
+              <FileType>8</FileType>
               <FilePath>.\IRQ.h</FilePath>
             </File>
             <File>
@@ -434,12 +434,12 @@
             </File>
             <File>
               <FileName>IRQ_objects.h</FileName>
-              <FileType>5</FileType>
+              <FileType>8</FileType>
               <FilePath>.\IRQ_objects.h</FilePath>
             </File>
             <File>
               <FileName>main.h</FileName>
-              <FileType>5</FileType>
+              <FileType>8</FileType>
               <FilePath>.\main.h</FilePath>
             </File>
           </Files>

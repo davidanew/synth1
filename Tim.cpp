@@ -27,4 +27,8 @@ void Tim::HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
 	}
 }
 
-TIM_HandleTypeDef Tim::htim2 = {0};
+uint32_t Tim::sample_tick_us(){
+	return 25;
+}
+
+TIM_HandleTypeDef Tim::htim2 {};
