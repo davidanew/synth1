@@ -9,6 +9,8 @@ class Dac {
 	uint32_t channel = DAC_CHANNEL_1;
 	bool init_done = false;
 	
+//need move construtor that goes to error	
+		
 public:	
 //	Dac();
 	void init(uint32_t channel); 

@@ -442,6 +442,16 @@
               <FileType>8</FileType>
               <FilePath>.\main.h</FilePath>
             </File>
+            <File>
+              <FileName>Wave.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Wave.h</FilePath>
+            </File>
+            <File>
+              <FileName>Wave.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Wave.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

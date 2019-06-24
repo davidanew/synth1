@@ -11,6 +11,7 @@
 ".\objects\irq_objects.o"
 ".\objects\irq_objects_1.o"
 ".\objects\main_1.o"
+".\objects\wave.o"
 ".\objects\buttons_nucleo-f446re.o"
 ".\objects\led_nucleo-f446re.o"
 ".\objects\stm32f4xx_hal.o"
