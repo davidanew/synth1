@@ -5,18 +5,19 @@ extern "C" {
 class Wave {
 protected:
 	uint32_t* data_ptr {nullptr};
-	uint32_t num_samples = 4096;
+	const uint32_t num_samples = 4096;
+	virtual void fill_memory();
 public:
 	Wave();
-	virtual void fill_memory();
-//make 4k array
-//fill with samples
-  uint32_t get_value(float phase);
   virtual ~Wave();
+	[[noreturn]] Wave(Wave &wave);
+  uint32_t get_value(float phase_rel);
 };
 
 class Square : public Wave {
-	Square();	
 	virtual void fill_memory();
+public:
+	Square();	
+	[[noreturn]] Square(Square &square);
 };
 

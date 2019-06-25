@@ -1,4 +1,4 @@
-./objects/main_1.o: main.h Dac.h \
+./objects/wave_1.o: Wave.cpp Wave.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   RTE\Device\STM32F446RETx\stm32f4xx_hal_conf.h \
   RTE\_Target_1\RTE_Components.h \
@@ -36,5 +36,4 @@
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
-  C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
-  Tim.h Hal.h IRQ_objects.h Wave.h
+  C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h
