@@ -1,7 +1,10 @@
 #include "Wave.h"
+#include "stdlib.h"
 
 Wave::Wave(){
-	data_ptr = new uint32_t[num_samples-1];
+	data_ptr = new uint32_t[num_samples];
+	//data_ptr = (uint32_t*) calloc(4,num_samples);
+
 	//if (data_ptr == nullptr)
 	//	while(1); //error
 	//fill_memory();

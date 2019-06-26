@@ -64,7 +64,7 @@ int main () {
 			}
 			sample_tick_local = IRQ_objects::sample_tick;
 			float phase_rel = (float)(sample_tick_local % period_in_ticks) / (float) period_in_ticks;
-			uint32_t dac_value =  sine.get_value(phase_rel); 			
+			uint32_t dac_value =  square.get_value(phase_rel)*0.5+0.5*sine.get_value(phase_rel); 			
 
 			dac1.set_value(dac_value);
 

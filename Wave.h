@@ -5,7 +5,7 @@ extern "C" {
 
 class Wave {
 protected:
-	uint32_t num_samples {20};
+	uint32_t num_samples {4096};
 	//virtual void fill_memory() =0;
   uint32_t* data_ptr {nullptr};
 
