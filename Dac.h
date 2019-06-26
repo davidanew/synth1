@@ -13,13 +13,13 @@ class Dac {
 		
 public:	
 //	Dac();
-	void init(uint32_t channel); 
+	void init(uint32_t channel_arg); 
   void set_value_rel(double value_rel);
   void set_value(uint32_t value_rel);
 	void high();
 	void low();
 	uint32_t get_value();
-	void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac);	
+	void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac_arg);	
 };
 
 #endif

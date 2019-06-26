@@ -5,15 +5,16 @@ extern "C" {
 
 class Wave {
 protected:
-	uint32_t num_samples {4096};
+	const uint32_t num_samples {4000};
 	//virtual void fill_memory() =0;
   uint32_t* data_ptr {nullptr};
 
 public:
 	Wave();
   ~Wave();
-//	[[noreturn]] Wave(Wave &wave);
-  uint32_t get_value(float phase_rel);
+	[[noreturn]] Wave(Wave &wave);
+  uint32_t get_value(float phase_rel) const;
+  uint32_t get_value(uint32_t sample_num) const;
 };
 
 class Square : public Wave {
@@ -23,7 +24,7 @@ class Square : public Wave {
 public:
 	Square();	
 //  uint32_t get_value(float phase_rel);
-	[[noreturn]] Square(Square &square);
+//	[[noreturn]] Square(Square &square);
 };
 
 class Sine : public Wave{
@@ -33,7 +34,7 @@ class Sine : public Wave{
 public:
 	Sine();	
 //  uint32_t get_value(float phase_rel);
-	[[noreturn]] Sine(Sine &sine);
+//	[[noreturn]] Sine(Sine &sine);
 };
 
 
