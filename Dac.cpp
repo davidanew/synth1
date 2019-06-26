@@ -38,6 +38,13 @@ void Dac::set_value_rel(double value_rel){
 	}
 }
 
+void Dac::set_value(uint32_t value){
+//	uint32_t dac_value = value;
+	if (HAL_DAC_SetValue(&hdac, channel, DAC_ALIGN_12B_R, value) != HAL_OK || init_done == false){
+		while(1);
+	}
+}
+
 void Dac::high(){
 	if (HAL_DAC_SetValue(&hdac, channel, DAC_ALIGN_12B_R, 0xFFF) != HAL_OK || init_done == false){
 		while(1);

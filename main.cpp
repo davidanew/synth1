@@ -5,19 +5,44 @@
 int main () {
 	uint64_t sample_tick_local = 0;
 	const double freq = 1000;
-	Wave* square = new Square();
 
+	//Wave* sine = new Sine;
+	//Wave* square = new Square;
+	
+	volatile uint32_t* ptr_1 {nullptr};
+	volatile uint32_t* ptr_2 {nullptr};
+	
+	ptr_1 = new uint32_t[19];
+	ptr_2 = new uint32_t[19];
+	
+	ptr_1[0] = 0;
+	ptr_2[0] = 0;
+	
+	
+	ptr_1[0] ++;
+	ptr_2[0] ++;
+	
+	
+	
+	
+	Sine sine;
+	Square square;
+
+	
+
+
+	/*
 		
-	volatile uint32_t* testptr {nullptr};
-	//testptr = new uint32_t[4096];
+	uint32_t* testptr {nullptr};
+	testptr = new uint32_t[4096];
 //	size_t entry_size = 4;
 //	volatile size_t mem_size = 1 * entry_size ;
-	testptr = (uint32_t*) calloc (4,4000);
+	//testptr = (uint32_t*) calloc (1,1000);
 	testptr[0] = 1;
 	testptr[0]++;
 	
 	
-	
+	*/
 	
 	Hal::init();
 	Tim::init();
@@ -39,9 +64,10 @@ int main () {
 			}
 			sample_tick_local = IRQ_objects::sample_tick;
 			float phase_rel = (float)(sample_tick_local % period_in_ticks) / (float) period_in_ticks;
-			uint32_t dac_value = square->get_value(phase_rel);			
-			//double phase_radians = phase_rel * 6.283;
-			dac1.set_value_rel(dac_value);
+			uint32_t dac_value =  sine.get_value(phase_rel); 			
+
+			dac1.set_value(dac_value);
+
 		}
 	}
 }

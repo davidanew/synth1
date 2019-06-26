@@ -15,6 +15,7 @@ public:
 //	Dac();
 	void init(uint32_t channel); 
   void set_value_rel(double value_rel);
+  void set_value(uint32_t value_rel);
 	void high();
 	void low();
 	uint32_t get_value();
