@@ -1,163 +1,74 @@
 #include "main.h"
 
-//#include<stdlib.h>
+#define test
 
 void SystemClock_Config(void);
 
+#ifdef test
 int main () {
-	
-	
 	uint64_t sample_tick_local = 0;
-	const float freq = 10;
+	Hal::init();
+	SystemClock_Config();
+	Tim::init();
+	Dac dac1;
+	dac1.init(DAC_CHANNEL_1);
+	while(1){
+		while (IRQ_objects::sample_tick <= sample_tick_local);
+		sample_tick_local = IRQ_objects::sample_tick;
+		dac1.low();
+		while (IRQ_objects::sample_tick <= sample_tick_local);
+		sample_tick_local = IRQ_objects::sample_tick;
+		dac1.high();
+	}
+}
+
+#else
+
+
+int main () {
+	uint64_t sample_tick_local = 0;
+	const float freq = 1000;
 	const Sine sine;
 	const Square square;
 	Dac dac1;
 	Dac dac2_led;
 	
 	Hal::init();
+	SystemClock_Config();
 	Tim::init();
 	float period = (float) 1.0 / freq; 
 	float period_in_us = 1000000 * period ;
 	float period_in_ticks = period_in_us / Tim::sample_tick_us() ;
 	
-	/*
-	4000 samples for 40k
-	
-	4000 samples for 
-	
-	25 us period, sample step =4000
-	50 us period sample_step = 2000
-	
-	
-	step = 4000 / (period/25us)
-	
-	
-	
-	samples per tick = 
-	*/
-	
-
 	dac1.init(DAC_CHANNEL_1);
 	dac2_led.init(DAC_CHANNEL_2);
 	dac2_led.low();
 	//IRQ_objects::dac1_ptr = &dac1;
 	sample_tick_local = IRQ_objects::sample_tick;
 	
+	/*
 
-	
-	
-	
-	
+	*/
 	
 	while(1){
 		while (IRQ_objects::sample_tick <= sample_tick_local);
-		dac1.high();
-		sample_tick_local = IRQ_objects::sample_tick;
-
-		while (IRQ_objects::sample_tick <= sample_tick_local);
-		dac1.low();		
-		sample_tick_local = IRQ_objects::sample_tick;
-
-		
-	}
-	
-	uint32_t dac_value = 0;
-	
-	while(1){
-		/*
-		sample_tick_local = IRQ_objects::sample_tick;
-		float phase_rel = fmod ( (float) sample_tick_local , period_in_ticks) /  period_in_ticks;
-		dac_value = (uint32_t) ( (  square.get_value(phase_rel) * 0.5)+(sine.get_value(phase_rel)*0.5)); 		
-		//7 instead 8 125 us/ 8 = 15 us
-		*/
-		
-		//with tim 5 peaks
-		//no tim 8 peans. 
-		//3*125 = 375, /8 = 46us
-		dac1.set_value(dac_value);			
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		
-		
-		
-		//17 without
-		// period 58us
-		//8 with
-		// period 125
-		// diff = 67
-		// 67/20 = 3.4 us
-		
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		dac1.high();
-		
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		
-		
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-		dac1.low();
-
-
-	}
-
-	
-	
-	while(1){
-		while (IRQ_objects::sample_tick <= sample_tick_local);
-		//if (IRQ_objects::sample_tick > sample_tick_local) {
 		if (IRQ_objects::sample_tick - sample_tick_local > 1 ) {
 			dac2_led.high();
 			//while(1);
 		}
 		else {
-	//		dac2_led.low();
+			dac2_led.low();
 		}
 		sample_tick_local = IRQ_objects::sample_tick;
 		float phase_rel = fmod ( (float) sample_tick_local , period_in_ticks) /  period_in_ticks;
 		uint32_t dac_value = (uint32_t) ( (  square.get_value(phase_rel) * 0.5)+(sine.get_value(phase_rel)*0.5)); 
-		
-		//uint32_t sample_num_mod = (IRQ_objects::sample_tick % period_in_ticks);
-		//percentage through = mod/ period in ticks;
-		//sample num = percentage * num_samples
-		
 
 		dac1.set_value(dac_value);
 
-		//}
 	}
 }
 
+#endif
 
 void SystemClock_Config(void)
 {
@@ -182,13 +93,13 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLR = 2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
-    Error_Handler();
+    while(1);
   }
   /** Activate the Over-Drive mode 
   */
   if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
-    Error_Handler();
+    while(1);
   }
   /** Initializes the CPU, AHB and APB busses clocks 
   */
@@ -201,8 +112,10 @@ void SystemClock_Config(void)
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
   {
-    Error_Handler();
+    while(1);
   }
 }
+
+
 
 

@@ -3,7 +3,7 @@
 void Tim::init(void)
 {
 	htim2.Instance = TIM2;
-	htim2.Init.Prescaler = 16;
+	htim2.Init.Prescaler = 90;
 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
 	htim2.Init.Period = 25;
 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;

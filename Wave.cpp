@@ -2,7 +2,12 @@
 //#include "stdlib.h"
 
 Wave::Wave(){
-	data_ptr = new uint32_t[num_samples];
+	try{		
+	  data_ptr = new uint32_t[num_samples];
+	}
+	catch(...){
+		while(1);
+	}
 
 }
 
