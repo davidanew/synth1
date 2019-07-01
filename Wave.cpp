@@ -1,5 +1,4 @@
 #include "Wave.h"
-//#include "stdlib.h"
 
 Wave::Wave(){
 	try{		
@@ -8,19 +7,19 @@ Wave::Wave(){
 	catch(...){
 		while(1);
 	}
-
 }
 
 Wave::~Wave(){
 	delete data_ptr;
 }
 
-
 Wave::Wave(Wave &wave){//error on copy
 	(void)wave;
 	while(1);
 }
 
+void Wave::fill_memory(){
+}
 
 uint32_t Wave::get_value(float phase_rel) const {
 	uint32_t location = uint32_t (phase_rel * (float) (num_samples-1));
@@ -40,19 +39,12 @@ uint32_t Wave::get_value(uint32_t sample_num) const{
 }
 
 
-
 Square::Square(){
-
 	fill_memory();
 }
 
-/*
-
-Square::Square(Square &square){//error on copy
-	(void)square;
-	while(1);
+Square::~Square(){
 }
-*/
 
 void Square::fill_memory(){
 	uint32_t i {0};
@@ -65,19 +57,12 @@ void Square::fill_memory(){
 	}	
 }
 
-
-
 Sine::Sine(){
-
 	fill_memory();
 }
 
-/*
-Sine::Sine(Sine &sine){//error on copy
-	(void)sine;
-	while(1);
+Sine::~Sine(){
 }
-*/
 
 void Sine::fill_memory(){
 	uint32_t i {0};

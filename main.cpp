@@ -39,20 +39,41 @@ int main () {
 
 #else
 
+class Voice {
+	Wave* wave_1 {nullptr};
+	Wave* wave_2 {nullptr};
+  float ampl_1 {0.01};
+	float ampl_2 {0.99};
+public:		
+	Voice(){
+		wave_1 = new Sine();
+	  wave_2 = new Square();
+	}
+  uint32_t get_value(float phase_rel) {
+		return (uint32_t) (wave_1->get_value(phase_rel) * ampl_1 + wave_2->get_value(phase_rel) * ampl_2);
+  }	
+};
+
+
+
+
 
 int main () {
 	uint64_t sample_tick_local = 0;
 	const float freq = 1000;
 	
-	//dynamic poly
+	//each instace needs adsr/ start time?
+	//stortage should be static
+	
+
+	Voice* voice_array[16];
+	
+	voice_array[0] = new Voice();
 	
 	
-	const Sine sine1;
-	const Sine sine2;
-	const Sine sine3;
-	const Sine sine4;
 	
-	//const Square square;
+	
+	
 	Dac dac1;
 	Dac dac2_led;
 	
@@ -69,43 +90,17 @@ int main () {
 	//IRQ_objects::dac1_ptr = &dac1;
 	sample_tick_local = IRQ_objects::sample_tick;
 	
-	/*
-
-	*/
-	
 	while(1){
-		
-		
-		
 		while (IRQ_objects::sample_tick <= sample_tick_local);
-		
-					dac2_led.high();
-/*
-//		dac1.low();
-		if (IRQ_objects::sample_tick - sample_tick_local > 1 ) {
-			dac2_led.high();
-			//while(1);
-		}
-		
-		else {
-			dac2_led.low();
-		}
-		*/
+		dac2_led.high();
 		sample_tick_local = IRQ_objects::sample_tick;
 		float phase_rel = fmod ( (float) sample_tick_local , period_in_ticks) /  period_in_ticks;
-		uint32_t dac_value = (uint32_t) ((sine1.get_value(phase_rel)*0.25)
-		                                +(sine2.get_value(phase_rel)*0.25)
-																		+(sine3.get_value(phase_rel)*0.25)
-		                                +(sine4.get_value(phase_rel)*0.25)); 
-
-
-		dac1.set_value(dac_value);
-//				dac1.high();
-		dac2_led.low();
-
-
+//		uint32_t dac_value = (uint32_t) ((sine_ptr->get_value(phase_rel)*0.5)
+//		                                +(square_ptr->get_value(phase_rel)*0.5)); 
 		
-
+		uint32_t dac_value = voice_array[0]->get_value(phase_rel);
+		dac1.set_value(dac_value);
+		dac2_led.low();
 	}
 }
 

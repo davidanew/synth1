@@ -6,35 +6,30 @@ extern "C" {
 class Wave {
 protected:
 	const uint32_t num_samples {4000};
-	//virtual void fill_memory() =0;
   uint32_t* data_ptr {nullptr};
-
+	virtual void fill_memory();
 public:
 	Wave();
-  ~Wave();
+  virtual ~Wave();
 	[[noreturn]] Wave(Wave &wave);
   uint32_t get_value(float phase_rel) const;
   uint32_t get_value(uint32_t sample_num) const;
 };
 
 class Square : public Wave {
-//	uint32_t num_samples;
 	void fill_memory();
-//	uint32_t* data_ptr {nullptr};
 public:
 	Square();	
-//  uint32_t get_value(float phase_rel);
-//	[[noreturn]] Square(Square &square);
+	~Square();	
+
+
 };
 
 class Sine : public Wave{
-//	uint32_t num_samples;
 	void fill_memory();
-//	uint32_t* data_ptr {nullptr};
 public:
 	Sine();	
-//  uint32_t get_value(float phase_rel);
-//	[[noreturn]] Sine(Sine &sine);
+	~Sine();	
 };
 
 
