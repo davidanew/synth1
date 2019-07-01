@@ -8,72 +8,31 @@ void SystemClock_Config(void);
 int main () {
 	uint64_t sample_tick_local = 0;
 	Hal::init();
-//	SystemClock_Config();
+	SystemClock_Config();
 	Tim::init();
 	Dac dac1;
 	dac1.init(DAC_CHANNEL_1);
 	while(1){
-		//1 dac is 3us at 16mhz clk
-		//1 instruction is 62ns
 		//1 dac is 48 cycles
 		//31 instructions on debugger
-		
-		
-	//	while (IRQ_objects::sample_tick <= sample_tick_local);
-	//	sample_tick_local = IRQ_objects::sample_tick;
 		dac1.low();
-//				dac1.low();
-//				dac1.low();
-//				dac1.low();
-
-	//	while (IRQ_objects::sample_tick <= sample_tick_local);
-	//	sample_tick_local = IRQ_objects::sample_tick;
 		dac1.high();
-//				dac1.high();
-//				dac1.high();
-//				dac1.high();
-
-
 	}
 }
 
 #else
 
-class Voice {
-	Wave* wave_1 {nullptr};
-	Wave* wave_2 {nullptr};
-  float ampl_1 {0.01};
-	float ampl_2 {0.99};
-public:		
-	Voice(){
-		wave_1 = new Sine();
-	  wave_2 = new Square();
-	}
-  uint32_t get_value(float phase_rel) {
-		return (uint32_t) (wave_1->get_value(phase_rel) * ampl_1 + wave_2->get_value(phase_rel) * ampl_2);
-  }	
-};
-
-
-
-
-
 int main () {
 	uint64_t sample_tick_local = 0;
 	const float freq = 1000;
 	
-	//each instace needs adsr/ start time?
 	//stortage should be static
-	
+  //each instace needs adsr/ start time?
 
 	Voice* voice_array[16];
-	
+	//try catch
 	voice_array[0] = new Voice();
-	
-	
-	
-	
-	
+		
 	Dac dac1;
 	Dac dac2_led;
 	
@@ -87,17 +46,12 @@ int main () {
 	dac1.init(DAC_CHANNEL_1);
 	dac2_led.init(DAC_CHANNEL_2);
 	dac2_led.low();
-	//IRQ_objects::dac1_ptr = &dac1;
 	sample_tick_local = IRQ_objects::sample_tick;
-	
 	while(1){
 		while (IRQ_objects::sample_tick <= sample_tick_local);
 		dac2_led.high();
 		sample_tick_local = IRQ_objects::sample_tick;
 		float phase_rel = fmod ( (float) sample_tick_local , period_in_ticks) /  period_in_ticks;
-//		uint32_t dac_value = (uint32_t) ((sine_ptr->get_value(phase_rel)*0.5)
-//		                                +(square_ptr->get_value(phase_rel)*0.5)); 
-		
 		uint32_t dac_value = voice_array[0]->get_value(phase_rel);
 		dac1.set_value(dac_value);
 		dac2_led.low();
@@ -108,8 +62,8 @@ int main () {
 
 void SystemClock_Config(void)
 {
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_OscInitTypeDef RCC_OscInitStruct {};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct {};
 
   /** Configure the main internal regulator output voltage 
   */

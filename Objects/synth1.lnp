@@ -13,6 +13,8 @@
 ".\objects\main_1.o"
 ".\objects\wave.o"
 ".\objects\wave_1.o"
+".\objects\voice.o"
+".\objects\voice_1.o"
 ".\objects\buttons_nucleo-f446re.o"
 ".\objects\led_nucleo-f446re.o"
 ".\objects\stm32f4xx_hal.o"

@@ -452,6 +452,16 @@
               <FileType>8</FileType>
               <FilePath>.\Wave.cpp</FilePath>
             </File>
+            <File>
+              <FileName>Voice.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Voice.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Voice.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Voice.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -913,6 +923,16 @@
               <FileName>Wave.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\Wave.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Voice.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Voice.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Voice.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Voice.h</FilePath>
             </File>
           </Files>
         </Group>
