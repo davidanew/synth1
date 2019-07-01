@@ -1,6 +1,6 @@
 #include "main.h"
 
-#define test
+//#define test
 
 void SystemClock_Config(void);
 
@@ -8,17 +8,32 @@ void SystemClock_Config(void);
 int main () {
 	uint64_t sample_tick_local = 0;
 	Hal::init();
-	SystemClock_Config();
+//	SystemClock_Config();
 	Tim::init();
 	Dac dac1;
 	dac1.init(DAC_CHANNEL_1);
 	while(1){
-		while (IRQ_objects::sample_tick <= sample_tick_local);
-		sample_tick_local = IRQ_objects::sample_tick;
+		//1 dac is 3us at 16mhz clk
+		//1 instruction is 62ns
+		//1 dac is 48 cycles
+		//31 instructions on debugger
+		
+		
+	//	while (IRQ_objects::sample_tick <= sample_tick_local);
+	//	sample_tick_local = IRQ_objects::sample_tick;
 		dac1.low();
-		while (IRQ_objects::sample_tick <= sample_tick_local);
-		sample_tick_local = IRQ_objects::sample_tick;
+//				dac1.low();
+//				dac1.low();
+//				dac1.low();
+
+	//	while (IRQ_objects::sample_tick <= sample_tick_local);
+	//	sample_tick_local = IRQ_objects::sample_tick;
 		dac1.high();
+//				dac1.high();
+//				dac1.high();
+//				dac1.high();
+
+
 	}
 }
 
@@ -28,8 +43,16 @@ int main () {
 int main () {
 	uint64_t sample_tick_local = 0;
 	const float freq = 1000;
-	const Sine sine;
-	const Square square;
+	
+	//dynamic poly
+	
+	
+	const Sine sine1;
+	const Sine sine2;
+	const Sine sine3;
+	const Sine sine4;
+	
+	//const Square square;
 	Dac dac1;
 	Dac dac2_led;
 	
@@ -51,19 +74,37 @@ int main () {
 	*/
 	
 	while(1){
+		
+		
+		
 		while (IRQ_objects::sample_tick <= sample_tick_local);
+		
+					dac2_led.high();
+/*
+//		dac1.low();
 		if (IRQ_objects::sample_tick - sample_tick_local > 1 ) {
 			dac2_led.high();
 			//while(1);
 		}
+		
 		else {
 			dac2_led.low();
 		}
+		*/
 		sample_tick_local = IRQ_objects::sample_tick;
 		float phase_rel = fmod ( (float) sample_tick_local , period_in_ticks) /  period_in_ticks;
-		uint32_t dac_value = (uint32_t) ( (  square.get_value(phase_rel) * 0.5)+(sine.get_value(phase_rel)*0.5)); 
+		uint32_t dac_value = (uint32_t) ((sine1.get_value(phase_rel)*0.25)
+		                                +(sine2.get_value(phase_rel)*0.25)
+																		+(sine3.get_value(phase_rel)*0.25)
+		                                +(sine4.get_value(phase_rel)*0.25)); 
+
 
 		dac1.set_value(dac_value);
+//				dac1.high();
+		dac2_led.low();
+
+
+		
 
 	}
 }
@@ -87,7 +128,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 16;
-  RCC_OscInitStruct.PLL.PLLN = 360;
+  RCC_OscInitStruct.PLL.PLLN = 374;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
