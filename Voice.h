@@ -14,5 +14,5 @@ class Voice {
 public:		
 	Voice(const uint64_t sample_tick, const uint64_t sample_tick_us, const Parameters &parameters_arg);
 	[[noreturn]] Voice(Voice &source);
-  uint32_t get_value(const uint64_t sample_tick);
+  float get_value(const uint64_t sample_tick);
 };

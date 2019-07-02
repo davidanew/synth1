@@ -23,15 +23,22 @@ void Dac::init(uint32_t channel_arg) {
 	init_done = true;
 }	
 
-void Dac::set_value_rel(double value_rel){
-	uint32_t dac_value = (uint32_t) ((double) 0xFFF * value_rel );
+void Dac::set_value_rel(float value_rel){
+	if (value_rel <(float)-1.0 || value_rel > (float) 1.0) 
+		while(1);
+	uint32_t dac_value = (uint32_t) ((float) 0xFFF * value_rel );
+	/*
 	if (HAL_DAC_SetValue(&hdac, channel, DAC_ALIGN_12B_R, dac_value) != HAL_OK || init_done == false){
 		while(1);
 	}
+	*/
+	set_value(dac_value);
 }
 
 void Dac::set_value(uint32_t value){
 //	uint32_t dac_value = value;
+	if (value > 0xFFF)
+		while(1);
 	if (HAL_DAC_SetValue(&hdac, channel, DAC_ALIGN_12B_R, value) != HAL_OK || init_done == false){
 		while(1);
 	}

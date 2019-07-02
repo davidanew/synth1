@@ -49,8 +49,9 @@ int main () {
 		while (IRQ_objects::sample_tick <= sample_tick_local);
 		dac2_led.high();
 		sample_tick_local = IRQ_objects::sample_tick;
-		uint32_t dac_value = voice_array[0]->get_value(sample_tick_local);
-		dac1.set_value(dac_value);
+		const float dac_value_float = voice_array[0]->get_value(sample_tick_local);
+		const float dac_value_rel = dac_value_float * (float) 0.5 + (float) 0.5; 
+		dac1.set_value_rel(dac_value_rel);
 		dac2_led.low();
 	}
 }

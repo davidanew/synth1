@@ -14,7 +14,7 @@ class Dac {
 public:	
 //	Dac();
 	void init(uint32_t channel_arg); 
-  void set_value_rel(double value_rel);
+  void set_value_rel(float value_rel);
   void set_value(uint32_t value_rel);
 	void high();
 	void low();
