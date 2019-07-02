@@ -1,4 +1,4 @@
-./objects/voice_1.o: Voice.h Parameters.h Wave.h \
+./objects/parameters_1.o: Parameters.h Wave.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   RTE\Device\STM32F446RETx\stm32f4xx_hal_conf.h \
   RTE\_Target_1\RTE_Components.h \

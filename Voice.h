@@ -1,19 +1,17 @@
-#include "Wave.h"
+//#include "Wave.h"
+#include "Parameters.h"
 
+extern "C" {
+	#include "stm32f4xx_hal.h"
+}
 
 class Voice {
-	Wave* wave_1 {nullptr};
-	Wave* wave_2 {nullptr};
-  float ampl_1 {0.5};
-	float ampl_2 {0.5};
 	float freq_1 {1000};
 	float freq_2 {1000};
+	float period_1_in_ticks {1000000};
+	float period_2_in_ticks {1000000};	
+	uint64_t sample_tick_start {0};
 public:		
-	Voice();
-  uint32_t get_value(float phase_rel) ;
+	Voice(const uint64_t sample_tick, const uint32_t sample_tick_us);
+  uint32_t get_value(const uint64_t sample_tick);
 };
-
-
-
-
-
