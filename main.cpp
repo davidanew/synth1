@@ -26,12 +26,16 @@ int main () {
 	uint64_t sample_tick_local = 0;
 	const float freq = 1000;
 	
-	//stortage should be static
   //each instace needs adsr/ start time?
 
 	Voice* voice_array[16];
-	//try catch
-	voice_array[0] = new Voice();
+	
+	try{		
+		voice_array[0] = new Voice();
+	}
+	catch(...){
+		while(1);
+	}	
 		
 	Dac dac1;
 	Dac dac2_led;

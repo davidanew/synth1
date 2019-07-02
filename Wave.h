@@ -26,7 +26,6 @@ public:
 	Square();	
 	~Square();	
   uint32_t get_value(float phase_rel) const;
-  //uint32_t get_value(uint32_t sample_num) const;
 };
 
 class Sine : public Wave{
@@ -36,7 +35,6 @@ public:
 	Sine();	
 	~Sine();
   uint32_t get_value(float phase_rel) const;
-  //uint32_t get_value(uint32_t sample_num) const;
 };
 
 
