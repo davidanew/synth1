@@ -22,66 +22,33 @@ int main () {
 
 #else
 
-
-
 int main () {
 	uint64_t sample_tick_local = 0;
-//	const float freq = 1000;
-	
-  //each instace needs adsr/ start time?
-
 	Voice* voice_array[16];
-	
-	/*
-	
-	try{
-		Parameters::wave_1 = new Sine();
-		Parameters::wave_2 = new Square();	
-		voice_array[0] = new Voice();
-	}
-	catch(...){
-		while(1);
-	}	
-		
-	*/
-	
 	Dac dac1;
 	Dac dac2_led;
-	
+	//Parameters parameters;
+
 	Hal::init();
 	SystemClock_Config();
 	Tim::init();
-	//float period = (float) 1.0 / freq; 
-	//float period_in_us = 1000000 * period ;
-	//Parameters::period_in_ticks = period_in_us / Tim::sample_tick_us() ;
-	
-	
-	
 	dac1.init(DAC_CHANNEL_1);
 	dac2_led.init(DAC_CHANNEL_2);
 	
 	try{
 		Parameters::wave_1 = new Sine();
 		Parameters::wave_2 = new Square();	
-//		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us);
-//		const uint32_t sample_tick_us = Tim::sample_tick_us;
 		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us());
-
-//		Voice* kjhjkgh = new Voice(
 	}
 	catch(...){
 		while(1);
 	}	
-	
-	
-	
 	dac2_led.low();
 	sample_tick_local = IRQ_objects::sample_tick;
 	while(1){
 		while (IRQ_objects::sample_tick <= sample_tick_local);
 		dac2_led.high();
 		sample_tick_local = IRQ_objects::sample_tick;
-//		float phase_rel = fmod ( (float) sample_tick_local , period_in_ticks) /  period_in_ticks;
 		uint32_t dac_value = voice_array[0]->get_value(sample_tick_local);
 		dac1.set_value(dac_value);
 		dac2_led.low();

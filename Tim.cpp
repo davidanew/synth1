@@ -27,7 +27,7 @@ void Tim::HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
 	}
 }
 
-uint32_t Tim::sample_tick_us(){
+uint64_t Tim::sample_tick_us(){
 	return 25;
 }
 
