@@ -3606,9 +3606,9 @@
       <ActiveTab>0</ActiveTab>
       <Doc>
         <Name>.\main.cpp</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>1</TopLine>
-        <CurrentLine>2</CurrentLine>
+        <ColumnNumber>105</ColumnNumber>
+        <TopLine>34</TopLine>
+        <CurrentLine>45</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3633,27 +3633,27 @@
       </Doc>
       <Doc>
         <Name>.\Voice.h</Name>
-        <ColumnNumber>12</ColumnNumber>
+        <ColumnNumber>21</ColumnNumber>
         <TopLine>1</TopLine>
-        <CurrentLine>8</CurrentLine>
+        <CurrentLine>11</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
         <Name>.\Voice.cpp</Name>
-        <ColumnNumber>5</ColumnNumber>
+        <ColumnNumber>18</ColumnNumber>
         <TopLine>1</TopLine>
-        <CurrentLine>25</CurrentLine>
+        <CurrentLine>34</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
         <Name>.\Dac.cpp</Name>
-        <ColumnNumber>13</ColumnNumber>
+        <ColumnNumber>0</ColumnNumber>
         <TopLine>1</TopLine>
-        <CurrentLine>41</CurrentLine>
+        <CurrentLine>33</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

@@ -23,8 +23,9 @@ int main () {
 #else
 
 int main () {
+	const uint32_t num_voices {16};
 	uint64_t sample_tick_local = 0;
-	Voice* voice_array[16];
+	Voice* voice_array[num_voices] = {nullptr};
 	Dac dac1;
 	Dac dac2_led;
 	Parameters parameters;
@@ -37,8 +38,14 @@ int main () {
 	
 	try{
 		parameters.wave_1 = new Sine();
-		parameters.wave_2 = new Square();	
-		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters);
+		parameters.wave_2 = new Sine();	
+		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 1000, 1);
+		voice_array[1] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 3000, (float) 0.33);
+	  voice_array[2] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 5000, (float) 0.2);
+		voice_array[3] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 7000, (float) 0.142);
+
+
+
 	}
 	catch(...){
 		while(1);
@@ -49,8 +56,15 @@ int main () {
 		while (IRQ_objects::sample_tick <= sample_tick_local);
 		dac2_led.high();
 		sample_tick_local = IRQ_objects::sample_tick;
-		const float dac_value_float = voice_array[0]->get_value(sample_tick_local);
-		const float dac_value_rel = dac_value_float * (float) 0.5 + (float) 0.5; 
+		uint32_t i {0};
+		float total {0};
+		for (i=0 ; i<num_voices ; i++){
+			if (voice_array[i] != nullptr) {
+				total += (float) 1.0 * voice_array[i]->get_value(sample_tick_local);
+			}
+		}
+		//const float dac_value_float = voice_array[0]->get_value(sample_tick_local);
+		const float dac_value_rel = total * (float) 0.5 + (float) 0.5; 	
 		dac1.set_value_rel(dac_value_rel);
 		dac2_led.low();
 	}

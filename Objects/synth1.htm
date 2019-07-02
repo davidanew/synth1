@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\synth1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\synth1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6120001: Last Updated: Tue Jul  2 16:24:18 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6120001: Last Updated: Tue Jul  2 17:20:02 2019
 <BR><P>
-<H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        400 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; SystemClock_Config() &rArr; HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq &rArr; __aeabi_uldivmod
 <P>
@@ -533,7 +533,7 @@ Global Symbols
 <P><STRONG><a name="[1be]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[ae]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 304 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; SystemClock_Config() &rArr; HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq &rArr; __aeabi_uldivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -890,6 +890,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = __aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dac::HAL_DAC_MspInit(DAC_HandleTypeDef*)
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config()
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__dynamic_cast
 <LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxxabiv1::__pointer_type_info::can_catch(const __cxxabiv1::__shim_type_info*, void*&) const
@@ -1833,7 +1834,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[15c]"></a>Parameters::Parameters(const Parameters&)</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, parameters.o(.text._ZN10ParametersC2ERKS_))
-<BR><BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voice::Voice(unsigned long long, unsigned long long, const Parameters&)
+<BR><BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voice::Voice(unsigned long long, unsigned long long, const Parameters&, unsigned, const float&)
 </UL>
 
 <P><STRONG><a name="[1dd]"></a>Parameters::Parameters__sub_object(const Parameters&)</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, parameters.o(.text._ZN10ParametersC2ERKS_), UNUSED)
@@ -1957,7 +1958,7 @@ Global Symbols
 <LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxa_allocate_exception
 </UL>
 
-<P><STRONG><a name="[144]"></a>Dac::set_value_rel(float)</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, dac.o(.text._ZN3Dac13set_value_relEf))
+<P><STRONG><a name="[144]"></a>Dac::set_value_rel(float)</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, dac.o(.text._ZN3Dac13set_value_relEf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Dac::set_value_rel(float) &rArr; Dac::set_value(unsigned) &rArr; HAL_DAC_SetValue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dac::set_value(unsigned)
@@ -2108,7 +2109,7 @@ Global Symbols
 
 <P><STRONG><a name="[1fa]"></a>Square::~Square__sub_object()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, wave_1.o(.text._ZN4WaveD2Ev), UNUSED)
 
-<P><STRONG><a name="[158]"></a>Voice::get_value(unsigned long long)</STRONG> (Thumb, 116 bytes, Stack size 40 bytes, voice.o(.text._ZN5Voice9get_valueEy))
+<P><STRONG><a name="[158]"></a>Voice::get_value(unsigned long long)</STRONG> (Thumb, 124 bytes, Stack size 40 bytes, voice.o(.text._ZN5Voice9get_valueEy))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = Voice::get_value(unsigned long long) &rArr; __hardfp_fmodf &rArr; _frem &rArr; __fpl_fnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ul2f
@@ -2117,8 +2118,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[15b]"></a>Voice::Voice(unsigned long long, unsigned long long, const Parameters&)</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, voice.o(.text._ZN5VoiceC2EyyRK10Parameters))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Voice::Voice(unsigned long long, unsigned long long, const Parameters&)
+<P><STRONG><a name="[15b]"></a>Voice::Voice(unsigned long long, unsigned long long, const Parameters&, unsigned, const float&)</STRONG> (Thumb, 100 bytes, Stack size 40 bytes, voice.o(.text._ZN5VoiceC2EyyRK10ParametersjRKf))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Voice::Voice(unsigned long long, unsigned long long, const Parameters&, unsigned, const float&)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Parameters::Parameters(const Parameters&)
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ul2f
@@ -2126,20 +2127,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1fb]"></a>Voice::Voice__sub_object(unsigned long long, unsigned long long, const Parameters&)</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, voice.o(.text._ZN5VoiceC2EyyRK10Parameters), UNUSED)
+<P><STRONG><a name="[1fb]"></a>Voice::Voice__sub_object(unsigned long long, unsigned long long, const Parameters&, unsigned, const float&)</STRONG> (Thumb, 100 bytes, Stack size 40 bytes, voice.o(.text._ZN5VoiceC2EyyRK10ParametersjRKf), UNUSED)
 
 <P><STRONG><a name="[78]"></a>Square::fill_memory()</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, wave_1.o(.text._ZN6Square11fill_memoryEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Square::fill_memory()
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> wave_1.o(.rodata._ZTV6Square)
 </UL>
-<P><STRONG><a name="[15d]"></a>Square::Square()</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, wave_1.o(.text._ZN6SquareC2Ev))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80 + Unknown Stack Size
-<LI>Call Chain = Square::Square() &rArr; Wave::set_ptr(float*&) &rArr; operator new[] (unsigned) &rArr; operator new(unsigned) &rArr; __cxa_allocate_exception &rArr;  __cxa_call_unexpected (Cycle)
-</UL>
-<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wave::set_ptr(float*&)
-</UL>
-<BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[15d]"></a>Square::Square()</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, wave_1.o(.text._ZN6SquareC2Ev), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wave::set_ptr(float*&)
 </UL>
 
 <P><STRONG><a name="[1fc]"></a>Square::Square__sub_object()</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, wave_1.o(.text._ZN6SquareC2Ev), UNUSED)
@@ -2928,8 +2924,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;libunwind::UnwindCursor&lang;libunwind::LocalAddressSpace, libunwind::Registers_arm&rang;::stepWithEHABI()
 </UL>
 
-<P><STRONG><a name="[af]"></a>main</STRONG> (Thumb, 232 bytes, Stack size 136 bytes, main_1.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 304 + Unknown Stack Size
+<P><STRONG><a name="[af]"></a>main</STRONG> (Thumb, 460 bytes, Stack size 232 bytes, main_1.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
 <LI>Call Chain = main &rArr; SystemClock_Config() &rArr; HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq &rArr; __aeabi_uldivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Hal::init()
@@ -2942,13 +2938,13 @@ Global Symbols
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__cxa_begin_catch
 <LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;operator new(unsigned)
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;operator delete (void*)
-<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Square::Square()
-<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voice::Voice(unsigned long long, unsigned long long, const Parameters&)
+<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voice::Voice(unsigned long long, unsigned long long, const Parameters&, unsigned, const float&)
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voice::get_value(unsigned long long)
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sine::Sine()
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dac::Dac__sub_object()
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Parameters::Parameters()
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config()
+<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -3056,7 +3052,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[159]"></a>__aeabi_ul2f</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, ffltll_clz.o(x$fpl$ffltll))
-<BR><BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voice::Voice(unsigned long long, unsigned long long, const Parameters&)
+<BR><BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voice::Voice(unsigned long long, unsigned long long, const Parameters&, unsigned, const float&)
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voice::get_value(unsigned long long)
 </UL>
 
@@ -3219,8 +3215,8 @@ Local Symbols
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;unw_get_proc_info
 </UL>
 <BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_unwind_cpp_pr0
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_unwind_cpp_pr2
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_unwind_cpp_pr1
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_unwind_cpp_pr2
 </UL>
 
 <P><STRONG><a name="[133]"></a>&lang;unnamed namespace 1&rang;::fallback_free(void*)</STRONG> (Thumb, 156 bytes, Stack size unknown bytes, fallback_malloc.cpp.o(.text._ZN12_GLOBAL__N_113fallback_freeEPv))
