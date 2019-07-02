@@ -12,6 +12,7 @@ class Voice {
 	float period_2_in_ticks {1000000};	
 	uint64_t sample_tick_start {0};
 public:		
-	Voice(const uint64_t sample_tick, const uint64_t sample_tick_us);
+	Voice(const uint64_t sample_tick, const uint64_t sample_tick_us, const Parameters &parameters_arg);
+	[[noreturn]] Voice(Voice &source);
   uint32_t get_value(const uint64_t sample_tick);
 };

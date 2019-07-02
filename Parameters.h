@@ -4,14 +4,13 @@
 #include "Wave.h"
 
 struct Parameters {
-	static Wave* wave_1;
-	static Wave* wave_2 ;
-  static float ampl_1;
-	static float ampl_2;
-	static uint64_t period_in_ticks;
-
-//	static float freq_1;
-//	static float freq_2;
+  Wave* wave_1 {nullptr};
+	Wave* wave_2 {nullptr};
+  float ampl_1 {0.5};
+	float ampl_2 {0.5};
+	uint64_t period_in_ticks {1000};
+	Parameters();
+	Parameters(const Parameters &source);
 };
 
 #endif

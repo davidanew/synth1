@@ -1,9 +1,9 @@
 #include "Voice.h"
 
-Voice::Voice(const uint64_t sample_tick, const uint64_t sample_tick_us){
-  sample_tick_start = sample_tick;
-	
-	
+Voice::Voice(const uint64_t sample_tick, const uint64_t sample_tick_us, const Parameters &parameters_arg)
+	: parameters(parameters_arg)
+	, sample_tick_start(sample_tick){
+		
 	const float period_1 = (float) 1.0 / freq_1;
 	const float period_2 = (float) 1.0 / freq_2;
 	
@@ -14,6 +14,14 @@ Voice::Voice(const uint64_t sample_tick, const uint64_t sample_tick_us){
 	period_2_in_ticks = period_2_in_us / sample_tick_us ;
 
 }
+	
+Voice::Voice(Voice &source){
+	//error on copy
+	(void)source;
+	while(1);//error on copy
+
+}
+
 uint32_t Voice::get_value(const uint64_t sample_tick) {
 	const uint64_t tick_delta = sample_tick - sample_tick_start;
 	const float phase_rel_1 = fmod ( (float) tick_delta , period_1_in_ticks) /  period_1_in_ticks;

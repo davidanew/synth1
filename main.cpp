@@ -27,7 +27,7 @@ int main () {
 	Voice* voice_array[16];
 	Dac dac1;
 	Dac dac2_led;
-	//Parameters parameters;
+	Parameters parameters;
 
 	Hal::init();
 	SystemClock_Config();
@@ -36,9 +36,9 @@ int main () {
 	dac2_led.init(DAC_CHANNEL_2);
 	
 	try{
-		Parameters::wave_1 = new Sine();
-		Parameters::wave_2 = new Square();	
-		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us());
+		parameters.wave_1 = new Sine();
+		parameters.wave_2 = new Square();	
+		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters);
 	}
 	catch(...){
 		while(1);
