@@ -39,13 +39,24 @@ int main () {
 	try{
 		parameters.wave_1 = new Sine();
 		parameters.wave_2 = new Sine();	
-		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 100, 1);
-		voice_array[1] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 300, (float) 0.33);
-	  voice_array[2] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 500, (float) 0.2);
-		voice_array[3] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 700, (float) 0.142);
-
-
-
+			
+		voice_array[0] = new Voice(40000,parameters, 100, 1);
+		voice_array[1] = new Voice(40000,parameters, 300, (float) 1.0/ (float) 3.0);
+		voice_array[2] = new Voice(40000,parameters, 500, (float) 1.0/ (float) 5.0);
+		voice_array[3] = new Voice(40000,parameters, 700, (float) 1.0/ (float) 7.0);
+		voice_array[4] = new Voice(40000,parameters, 900, (float) 1.0/ (float) 9.0);
+		voice_array[5] = new Voice(40000,parameters, 1100, (float) 1.0/ (float) 11.0);
+		voice_array[6] = new Voice(40000,parameters, 1300, (float) 1.0/ (float) 13.0);
+		voice_array[7] = new Voice(40000,parameters, 1500, (float) 1.0/ (float) 15.0);
+		voice_array[8] = new Voice(40000,parameters, 1700, (float) 1.0/ (float) 17.0);
+		voice_array[9] = new Voice(40000,parameters, 1900, (float) 1.0/ (float) 19.0);
+		voice_array[10] = new Voice(40000,parameters, 2100, (float) 1.0/ (float) 21.0);
+		voice_array[11] = new Voice(40000,parameters, 2300, (float) 1.0/ (float) 23.0);
+		voice_array[12] = new Voice(40000,parameters, 2500, (float) 1.0/ (float) 25.0);
+		voice_array[13] = new Voice(40000,parameters, 2700, (float) 1.0/ (float) 27.0);
+		voice_array[14] = new Voice(40000,parameters, 2900, (float) 1.0/ (float) 29.0);
+		voice_array[15] = new Voice(40000,parameters, 3100, (float) 1.0/ (float) 31.0);
+	
 	}
 	catch(...){
 		while(1);
@@ -60,7 +71,7 @@ int main () {
 		float total {0};
 		for (i=0 ; i<num_voices ; i++){
 			if (voice_array[i] != nullptr) {
-				total += (float) 0.5 * voice_array[i]->get_value(sample_tick_local);
+				total += (float) 1 * voice_array[i]->get_value(sample_tick_local);
 			}
 		}
 		//const float dac_value_float = voice_array[0]->get_value(sample_tick_local);
