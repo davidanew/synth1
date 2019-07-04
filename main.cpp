@@ -39,10 +39,10 @@ int main () {
 	try{
 		parameters.wave_1 = new Sine();
 		parameters.wave_2 = new Sine();	
-		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 1000, 1);
-		voice_array[1] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 3000, (float) 0.33);
-	  voice_array[2] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 5000, (float) 0.2);
-		voice_array[3] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 7000, (float) 0.142);
+		voice_array[0] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 100, 1);
+		voice_array[1] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 300, (float) 0.33);
+	  voice_array[2] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 500, (float) 0.2);
+		voice_array[3] = new Voice(IRQ_objects::sample_tick, Tim::sample_tick_us(),parameters, 700, (float) 0.142);
 
 
 
@@ -60,7 +60,7 @@ int main () {
 		float total {0};
 		for (i=0 ; i<num_voices ; i++){
 			if (voice_array[i] != nullptr) {
-				total += (float) 1.0 * voice_array[i]->get_value(sample_tick_local);
+				total += (float) 0.5 * voice_array[i]->get_value(sample_tick_local);
 			}
 		}
 		//const float dac_value_float = voice_array[0]->get_value(sample_tick_local);

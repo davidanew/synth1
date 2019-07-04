@@ -27,8 +27,9 @@ Voice::Voice(Voice &source){
 
 float Voice::get_value(const uint64_t sample_tick) {
 	const uint64_t tick_delta = sample_tick - sample_tick_start;
-	const float phase_rel_1 = fmod ( (float) tick_delta , period_1_in_ticks) /  period_1_in_ticks;
-	const float phase_rel_2 = fmod ( (float) tick_delta , period_2_in_ticks) /  period_2_in_ticks;
+	const float tick_delta_float = (float) tick_delta;
+	const float phase_rel_1 = fmod ( tick_delta_float , period_1_in_ticks) /  period_1_in_ticks;
+	const float phase_rel_2 = fmod ( tick_delta_float , period_2_in_ticks) /  period_2_in_ticks;
 	return (float) (parameters.wave_1->get_value(phase_rel_1) * parameters.ampl_1 + 
 									parameters.wave_2->get_value(phase_rel_2) * parameters.ampl_2)
 	                * velocity;
