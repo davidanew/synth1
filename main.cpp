@@ -22,6 +22,65 @@ int main () {
 
 #else
 
+
+class Filter {
+	//biquad direct form 1
+	//https://en.wikipedia.org/wiki/Digital_biquad_filter#/media/File:Biquad_filter_DF-I.svg
+	float x0 {0};
+	float x1 {0};
+	float x2 {0};
+	float y0 {0};
+	float y1 {0};
+	float y2 {0};
+	float a1 {0};
+	float a2 {0};
+	float b0 {0};
+	float b1 {0};
+	float b2 {0};
+public:	
+	Filter(){
+	/*
+		//10k 0 gain
+		b0 = (float) 0.33333333333333326;
+		b1 = (float) 0.6666666666666665;
+		b2 = (float) 0.33333333333333326;
+		a1 = (float) -1.4802973661668753e-16;
+		a2 = (float) 0.33333333333333326;
+	*/	
+		/*
+		//1k 0 gain
+		b0 = (float) 0.0055371181871000435;
+		b1 = (float) 0.011074236374200087;
+		b2 = (float) 0.0055371181871000435;
+		a1 = (float) -1.776835077726772;
+		a2 = (float) 0.7989835504751722;
+		*/
+		
+		//web site 1k
+		http://www.micromodeler.com/dsp/
+		b0 = (float) 0.008;
+		b1 = (float) 0.016;
+		b2 = (float) 0.008;
+		a1 = (float) -1.726;
+		a2 = (float) 0.747;
+		
+		
+		
+
+		
+	}
+
+	float next_sample(float next_x){
+		x2 = x1;
+		x1 = x0;
+		x0 = next_x;
+		y2 = y1;
+		y1 = y0;
+		y0 = b0*x0 + b1*x1 + b2*x2 - a1*y1 - a2*y2;
+		return y0;	
+	}
+};
+
 int main () {
 	const uint32_t num_voices {16};
 	uint64_t sample_tick_local = 0;
@@ -29,6 +88,7 @@ int main () {
 	Dac dac1;
 	Dac dac2_led;
 	Parameters parameters;
+	Filter filter;
 
 	Hal::init();
 	SystemClock_Config();
@@ -37,9 +97,11 @@ int main () {
 	dac2_led.init(DAC_CHANNEL_2);
 	
 	try{
+		
+		/*
 		parameters.wave_1 = new Sine();
 		parameters.wave_2 = new Sine();	
-			
+		
 		voice_array[0] = new Voice(40000,parameters, 100, 1);
 		voice_array[1] = new Voice(40000,parameters, 300, (float) 1.0/ (float) 3.0);
 		voice_array[2] = new Voice(40000,parameters, 500, (float) 1.0/ (float) 5.0);
@@ -56,7 +118,49 @@ int main () {
 		voice_array[13] = new Voice(40000,parameters, 2700, (float) 1.0/ (float) 27.0);
 		voice_array[14] = new Voice(40000,parameters, 2900, (float) 1.0/ (float) 29.0);
 		voice_array[15] = new Voice(40000,parameters, 3100, (float) 1.0/ (float) 31.0);
-	
+		
+		
+		*/
+		
+		/*
+		parameters.wave_1 = new Noise();
+		parameters.wave_2 = new Noise();	
+		
+		voice_array[0] = new Voice(40000,parameters, 1000, 1);
+		*/
+		
+		parameters.wave_1 = new Sine();
+		parameters.wave_2 = new Sine();	
+		
+		float scale = (float) 0.15;
+		
+		voice_array[0] = new Voice(40000,parameters, 250, scale);
+		
+		
+		voice_array[1] = new Voice(40000,parameters, 500, scale);
+		
+		voice_array[2] = new Voice(40000,parameters, 1000, scale);
+		voice_array[3] = new Voice(40000,parameters, 2000, scale);
+		voice_array[4] = new Voice(40000,parameters, 4000, scale);
+		voice_array[5] = new Voice(40000,parameters, 8000, scale);
+		voice_array[6] = new Voice(40000,parameters, 16000, scale);
+		
+		/*
+		voice_array[7] = new Voice(40000,parameters, 8000, scale);
+		voice_array[8] = new Voice(40000,parameters, 9000, scale);
+		voice_array[9] = new Voice(40000,parameters, 10000, scale);
+		voice_array[10] = new Voice(40000,parameters, 11000, scale);
+		voice_array[11] = new Voice(40000,parameters, 12000, scale);
+		voice_array[12] = new Voice(40000,parameters, 13000, scale);
+		voice_array[13] = new Voice(40000,parameters, 14000, scale);
+		voice_array[14] = new Voice(40000,parameters, 15000, scale);
+		voice_array[15] = new Voice(40000,parameters, 16000, scale);
+		
+		*/
+		
+
+
+
 	}
 	catch(...){
 		while(1);
@@ -75,8 +179,10 @@ int main () {
 			}
 		}
 		//const float dac_value_float = voice_array[0]->get_value(sample_tick_local);
-		const float dac_value_rel = total * (float) 0.5 + (float) 0.5; 	
-		dac1.set_value_rel(dac_value_rel);
+		const float total_rel = total * (float) 0.5 + (float) 0.5; 	
+		const float filtered_rel = filter.next_sample(total_rel);
+		dac2_led.set_value_rel(filtered_rel);
+		dac1.set_value_rel(filtered_rel);
 		dac2_led.low();
 	}
 }

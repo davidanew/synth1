@@ -2,6 +2,8 @@ extern "C" {
 	#include "stm32f4xx_hal.h"
 }
 #include <math.h>
+#include <stdlib.h>
+
 
 class Wave {
 protected:
@@ -35,5 +37,15 @@ public:
 	~Sine();
   float get_value(float phase_rel) const;
 };
+
+class Noise : public Wave{
+	void fill_memory();
+	static float* data_ptr;
+public:
+	Noise();	
+	~Noise();
+  float get_value(float phase_rel) const;
+};
+
 
 

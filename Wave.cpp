@@ -79,3 +79,23 @@ void Sine::fill_memory(){
 float Sine::get_value(float phase_rel) const {
 	return Wave::get_value_wptr(data_ptr,phase_rel);
 }
+
+Noise::Noise(){
+}
+
+float*  Noise::data_ptr = nullptr;
+
+Noise::~Noise(){
+}
+
+void Noise::fill_memory(){
+}
+
+float Noise::get_value(float phase_rel) const {
+	(void) phase_rel;
+	float x = (float) -1.0 + (float) 2.0 * (float)rand()/(float)(RAND_MAX);
+	return x;
+}
+
+
+

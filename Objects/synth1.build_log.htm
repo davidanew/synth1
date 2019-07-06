@@ -27,6 +27,9 @@ Project File Date:  07/03/2019
 <h2>Output:</h2>
 *** Using Compiler 'V6.12', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
+main.cpp(60): warning: unused label 'http' [-Wunused-label]
+                http://www.micromodeler.com/dsp/
+                ^~~~~
 main.cpp(1): warning: In file included from...
 ./main.h(5): warning: In file included from...
 ./Voice.h(14): warning: padding class 'Voice' with 4 bytes to align 'previous_sample_tick' [-Wpadded]
@@ -53,8 +56,11 @@ C:/Users/david/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.13.0/Drivers/STM32F4
 C:/Users/david/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.13.0/Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_dma.h(165): warning: padding struct '__DMA_HandleTypeDef' with 2 bytes to align 'Parent' [-Wpadded]
   void                       *Parent;                                                          /*!< Parent object state                    */ 
                               ^
-4 warnings generated.
+5 warnings generated.
 compiling main.h...
+main.cpp(60): warning: unused label 'http' [-Wunused-label]
+                http://www.micromodeler.com/dsp/
+                ^~~~~
 main.cpp(1): warning: In file included from...
 ./main.h(5): warning: In file included from...
 ./Voice.h(14): warning: padding class 'Voice' with 4 bytes to align 'previous_sample_tick' [-Wpadded]
@@ -81,13 +87,13 @@ C:/Users/david/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.13.0/Drivers/STM32F4
 C:/Users/david/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.13.0/Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_dma.h(165): warning: padding struct '__DMA_HandleTypeDef' with 2 bytes to align 'Parent' [-Wpadded]
   void                       *Parent;                                                          /*!< Parent object state                    */ 
                               ^
-4 warnings generated.
+5 warnings generated.
 compiling main.cpp...
 linking...
 .\Objects\synth1.axf: Warning: L6304W: Duplicate input file .\objects\main_1.o ignored.
-Program Size: Code=23748 RO-data=3600 RW-data=20 ZI-data=67280  
+Program Size: Code=23680 RO-data=3520 RW-data=20 ZI-data=67504  
 Finished: 0 information, 1 warning and 0 error messages.
-".\Objects\synth1.axf" - 0 Error(s), 9 Warning(s).
+".\Objects\synth1.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -151,8 +157,8 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.2.0
 
    * Component: ARM::CMSIS:DSP:Library:1.6.0
-      Library file:  CMSIS\DSP\Lib\ARM\arm_cortexM4lf_math.lib
       Include file:  CMSIS\DSP\Include\arm_math.h
+      Library file:  CMSIS\DSP\Lib\ARM\arm_cortexM4lf_math.lib
 
    * Component: Keil.NUCLEO-F446RE::Board Support:Buttons:1.1.0
       Source file:   Boards\ST\NUCLEO-F446RE\Common\Buttons_NUCLEO-F446RE.c
@@ -161,30 +167,30 @@ Package Vendor: Keil
       Source file:   Boards\ST\NUCLEO-F446RE\Common\LED_NUCLEO-F446RE.c
 
    * Component: Keil::Device:STM32Cube Framework:Classic:1.7.4
-      Source file:   MDK\Templates\Src\main.c
-      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
-      Source file:   MDK\Templates\Src\stm32f4xx_it.c
       Include file:  MDK\Templates\Inc\stm32f4xx_hal_conf.h
-      Include file:  MDK\Templates_LL\Inc\main.h
-      Include file:  CMSIS\Driver\Config\RTE_Device.h
-      Include file:  MDK\Templates\Inc\stm32f4xx_it.h
-      Include file:  MDK\Templates\Inc\main.h
+      Source file:   MDK\Templates\Src\stm32f4xx_it.c
+      Source file:   MDK\Templates\Src\main.c
       Source file:   MDK\Templates_LL\Src\main.c
+      Include file:  MDK\Templates_LL\Inc\main.h
+      Include file:  MDK\Templates\Inc\main.h
+      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
+      Include file:  MDK\Templates\Inc\stm32f4xx_it.h
+      Include file:  CMSIS\Driver\Config\RTE_Device.h
 
    * Component: Keil::Device:STM32Cube HAL:ADC:1.7.4
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c
 
    * Component: Keil::Device:STM32Cube HAL:Common:1.7.4
-      Include file:  Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c
+      Include file:  Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 
    * Component: Keil::Device:STM32Cube HAL:Cortex:1.7.4
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
 
    * Component: Keil::Device:STM32Cube HAL:DAC:1.7.4
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c
 
    * Component: Keil::Device:STM32Cube HAL:DMA:1.7.4
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c
@@ -198,20 +204,20 @@ Package Vendor: Keil
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c
 
    * Component: Keil::Device:STM32Cube HAL:RCC:1.7.4
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c
 
    * Component: Keil::Device:STM32Cube HAL:TIM:1.7.4
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c
 
    * Component: Keil::Device:Startup:2.6.2
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f446xx.s
+      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
       Source file:   MDK\Device\Source\ARM\STM32F446xx_OPT.s
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
-      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f446xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>
