@@ -24,11 +24,13 @@ int main () {
 
 #else
 
+/*
+
 class Filter {
 	// change filter to 2 pole low pass
 	
 	//from http://www.eecs.umich.edu/courses/eecs206/archive/spring02/notes.dir/iir4.pdf
-	/*
+	
 	x0 -- |b0> --+----------- y0
                |       |
                |       z^-1
@@ -38,7 +40,6 @@ class Filter {
                |       z^-1
                |       |
 	             +-<a2|--|  y2
-	*/
 	
 	//r real pole position on z plane
 	//e.g. 0.85460 gives 1kHz cutoff
@@ -85,6 +86,8 @@ public:
 		return y0;	
 	}
 };
+
+*/
 
 int main () {
 	const uint32_t num_voices {16};

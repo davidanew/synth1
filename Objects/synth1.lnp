@@ -17,6 +17,8 @@
 ".\objects\voice_1.o"
 ".\objects\parameters.o"
 ".\objects\parameters_1.o"
+".\objects\fitler.o"
+".\objects\filter.o"
 ".\objects\buttons_nucleo-f446re.o"
 ".\objects\led_nucleo-f446re.o"
 "..\..\..\..\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Lib\ARM\arm_cortexM4lf_math.lib"
