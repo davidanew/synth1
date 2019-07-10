@@ -1,4 +1,6 @@
 #include "main.h"
+//move this to filter class header when done
+#include <math.h>
 
 //#define test
 
@@ -22,61 +24,64 @@ int main () {
 
 #else
 
-
 class Filter {
-	//biquad direct form 1
-	//https://en.wikipedia.org/wiki/Digital_biquad_filter#/media/File:Biquad_filter_DF-I.svg
+	// change filter to 2 pole low pass
+	
+	//from http://www.eecs.umich.edu/courses/eecs206/archive/spring02/notes.dir/iir4.pdf
+	/*
+	x0 -- |b0> --+----------- y0
+               |       |
+               |       z^-1
+               |       |
+	             +-<a1|--|  y1
+               |       |
+               |       z^-1
+               |       |
+	             +-<a2|--|  y2
+	*/
+	
+	//r real pole position on z plane
+	//e.g. 0.85460 gives 1kHz cutoff
+	//r =exp(-2*pi*(1000/40000))
+	//H(Z) = b0/(1-a1*z^-1-a2*z^-2)
+  //H(Z) = 1-2*r*cos(theta)+r^2 /(1 - 2*r*cos(theta)z^-1 + r^2z^-2)
+	//Theta controls imaginary component of poles
+	//theta = 0 gives real poles with standard low pass filter
+	//Theta will be mapped to a knob as is too complex to calculate r and theta to get exacly the right response
+	//see web site above for more details
+	
 	float x0 {0};
-	float x1 {0};
-	float x2 {0};
 	float y0 {0};
 	float y1 {0};
 	float y2 {0};
 	float a1 {0};
 	float a2 {0};
-	float b0 {0};
-	float b1 {0};
-	float b2 {0};
+	float b0 {1};
+		
+	//sample freq hard coded for now
+	const float sample_freq {40000};
+	const float pi {(float) 3.14159265359};
+	
 public:	
+	Filter(float cutoff, float theta){
+		//const float term1 = (float)-2.0*pi*((float)cutoff/(float)sample_freq);
+		//const float r = exp((float)-2.0*pi*((float)cutoff/(float)sample_freq));
+	  //volatile float r = pow((float)2.5,term1);
+		const float r = exp((float)-2.0*pi*((float)cutoff/(float)sample_freq));
+		b0 = (float)1.0-(float)2.0*r*(float)cos(theta)+(float)pow(r,(float)2.0);
+		a1 = (float)2.0*r*cos(theta);
+		a2 = - pow(r,(float)2.0);
+	}
+	
 	Filter(){
-	/*
-		//10k 0 gain
-		b0 = (float) 0.33333333333333326;
-		b1 = (float) 0.6666666666666665;
-		b2 = (float) 0.33333333333333326;
-		a1 = (float) -1.4802973661668753e-16;
-		a2 = (float) 0.33333333333333326;
-	*/	
-		/*
-		//1k 0 gain
-		b0 = (float) 0.0055371181871000435;
-		b1 = (float) 0.011074236374200087;
-		b2 = (float) 0.0055371181871000435;
-		a1 = (float) -1.776835077726772;
-		a2 = (float) 0.7989835504751722;
-		*/
-		
-		//web site 1k
-		http://www.micromodeler.com/dsp/
-		b0 = (float) 0.006;
-		b1 = (float) 0.011;
-		b2 = (float) 0.006;
-		a1 = (float) -1.779;
-		a2 = (float) 0.801;
-		
-		
-		
-
-		
+		//default constructor uses default values which do no filtering
 	}
 
 	float next_sample(float next_x){
-		x2 = x1;
-		x1 = x0;
 		x0 = next_x;
 		y2 = y1;
 		y1 = y0;
-		y0 = b0*x0 + b1*x1 + b2*x2 - a1*y1 - a2*y2;
+		y0 = b0*x0 + a1*y1 + a2*y2;
 		return y0;	
 	}
 };
@@ -88,7 +93,8 @@ int main () {
 	Dac dac1;
 	Dac dac2_led;
 	Parameters parameters;
-	Filter filter;
+	//Filter filter {500,(float)0.1571};
+	Filter filter {1000,(float)0.0};
 
 	Hal::init();
 	SystemClock_Config();
@@ -97,69 +103,23 @@ int main () {
 	dac2_led.init(DAC_CHANNEL_2);
 	
 	try{
-		
-		/*
+			
 		parameters.wave_1 = new Sine();
 		parameters.wave_2 = new Sine();	
 		
-		voice_array[0] = new Voice(40000,parameters, 100, 1);
-		voice_array[1] = new Voice(40000,parameters, 300, (float) 1.0/ (float) 3.0);
-		voice_array[2] = new Voice(40000,parameters, 500, (float) 1.0/ (float) 5.0);
-		voice_array[3] = new Voice(40000,parameters, 700, (float) 1.0/ (float) 7.0);
-		voice_array[4] = new Voice(40000,parameters, 900, (float) 1.0/ (float) 9.0);
-		voice_array[5] = new Voice(40000,parameters, 1100, (float) 1.0/ (float) 11.0);
-		voice_array[6] = new Voice(40000,parameters, 1300, (float) 1.0/ (float) 13.0);
-		voice_array[7] = new Voice(40000,parameters, 1500, (float) 1.0/ (float) 15.0);
-		voice_array[8] = new Voice(40000,parameters, 1700, (float) 1.0/ (float) 17.0);
-		voice_array[9] = new Voice(40000,parameters, 1900, (float) 1.0/ (float) 19.0);
-		voice_array[10] = new Voice(40000,parameters, 2100, (float) 1.0/ (float) 21.0);
-		voice_array[11] = new Voice(40000,parameters, 2300, (float) 1.0/ (float) 23.0);
-		voice_array[12] = new Voice(40000,parameters, 2500, (float) 1.0/ (float) 25.0);
-		voice_array[13] = new Voice(40000,parameters, 2700, (float) 1.0/ (float) 27.0);
-		voice_array[14] = new Voice(40000,parameters, 2900, (float) 1.0/ (float) 29.0);
-		voice_array[15] = new Voice(40000,parameters, 3100, (float) 1.0/ (float) 31.0);
-		
-		
-		*/
-		
 		/*
-		parameters.wave_1 = new Noise();
-		parameters.wave_2 = new Noise();	
-		
-		voice_array[0] = new Voice(40000,parameters, 1000, 1);
-		*/
-		
-		parameters.wave_1 = new Sine();
-		parameters.wave_2 = new Sine();	
-		
 		float scale = (float) 0.2;
 		
 		voice_array[0] = new Voice(40000,parameters, 250, scale);
-		
-		
 		voice_array[1] = new Voice(40000,parameters, 500, scale);
-		
 		voice_array[2] = new Voice(40000,parameters, 1000, scale);
 		voice_array[3] = new Voice(40000,parameters, 2000, scale);
 		voice_array[4] = new Voice(40000,parameters, 4000, scale);
 		voice_array[5] = new Voice(40000,parameters, 8000, scale);
 		voice_array[6] = new Voice(40000,parameters, 16000, scale);
-		
-		/*
-		voice_array[7] = new Voice(40000,parameters, 8000, scale);
-		voice_array[8] = new Voice(40000,parameters, 9000, scale);
-		voice_array[9] = new Voice(40000,parameters, 10000, scale);
-		voice_array[10] = new Voice(40000,parameters, 11000, scale);
-		voice_array[11] = new Voice(40000,parameters, 12000, scale);
-		voice_array[12] = new Voice(40000,parameters, 13000, scale);
-		voice_array[13] = new Voice(40000,parameters, 14000, scale);
-		voice_array[14] = new Voice(40000,parameters, 15000, scale);
-		voice_array[15] = new Voice(40000,parameters, 16000, scale);
-		
 		*/
 		
-
-
+		voice_array[0] = new Voice(40000,parameters, 1000, 1.0);
 
 	}
 	catch(...){
@@ -181,7 +141,7 @@ int main () {
 		//const float dac_value_float = voice_array[0]->get_value(sample_tick_local);
 		const float total_rel = total * (float) 0.5 + (float) 0.5; 	
 		const float filtered_rel = filter.next_sample(total_rel);
-		dac2_led.set_value_rel(filtered_rel);
+		//dac2_led.set_value_rel(filtered_rel);
 		dac1.set_value_rel(filtered_rel);
 		dac2_led.low();
 	}
