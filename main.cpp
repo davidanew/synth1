@@ -58,11 +58,11 @@ public:
 		
 		//web site 1k
 		http://www.micromodeler.com/dsp/
-		b0 = (float) 0.008;
-		b1 = (float) 0.016;
-		b2 = (float) 0.008;
-		a1 = (float) -1.726;
-		a2 = (float) 0.747;
+		b0 = (float) 0.006;
+		b1 = (float) 0.011;
+		b2 = (float) 0.006;
+		a1 = (float) -1.779;
+		a2 = (float) 0.801;
 		
 		
 		
@@ -132,7 +132,7 @@ int main () {
 		parameters.wave_1 = new Sine();
 		parameters.wave_2 = new Sine();	
 		
-		float scale = (float) 0.15;
+		float scale = (float) 0.2;
 		
 		voice_array[0] = new Voice(40000,parameters, 250, scale);
 		
