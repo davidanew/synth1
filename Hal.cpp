@@ -2,6 +2,8 @@
 
 void Hal::init(void){
 	HAL_Init();
+	//Run callback from member function
+	//Normal callback will do nothing
 	HAL_MspInit();	
 }
 void Hal::HAL_MspInit(void)

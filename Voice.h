@@ -1,3 +1,5 @@
+/*Controls sound for one keypress (and release)*/
+
 #include "Parameters.h"
 
 extern "C" {

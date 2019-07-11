@@ -1,19 +1,12 @@
 #include "IRQ.h"
 
-
+//On TIM2 IRQ update sample tick
 void TIM2_IRQHandler_cpp(void){
-	/*
-	if (IRQ_objects::dac1_ptr->get_value() == 0) {
-		IRQ_objects::dac1_ptr->high();
-	}
-	else {
-		IRQ_objects::dac1_ptr->low();
-	}
-	*/
 	IRQ_objects::sample_tick++;
 	HAL_TIM_IRQHandler(&(Tim::htim2));
 }
 
+//Actual handlers need to be in C
 
 extern "C" {
 	void SysTick_Handler(void)

@@ -1,3 +1,5 @@
+/*This sets up and outputs values to the DAC*/
+
 #ifndef DAC_H
 #define DAC_H 1
 extern "C" {
@@ -5,11 +7,12 @@ extern "C" {
 }
 
 class Dac {
+	//Used by Hal code
 	DAC_HandleTypeDef hdac {};
 	uint32_t channel = DAC_CHANNEL_1;
 	bool init_done = false;
 	
-//need move construtor that goes to error	
+//TODO: need copy construtor that goes to error	
 		
 public:	
 //	Dac();

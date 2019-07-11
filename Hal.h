@@ -1,4 +1,8 @@
+/*general Hal setup*/
+
 #include "stm32f4xx_hal.h"
+
+//TODO: Error on copy constructor
 
 class Hal {
 public:

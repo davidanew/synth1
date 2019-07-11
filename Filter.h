@@ -1,3 +1,5 @@
+/*IIR filter that allows low pass and peaking*/
+
 class Filter {	
 	//from http://www.eecs.umich.edu/courses/eecs206/archive/spring02/notes.dir/iir4.pdf
 	/*

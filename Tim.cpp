@@ -1,5 +1,7 @@
 #include "Tim.h"
 
+//Currently uses TIM2
+//Hard coded values for 40kHz
 void Tim::init(void)
 {
 	htim2.Instance = TIM2;
@@ -7,6 +9,8 @@ void Tim::init(void)
 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
 	htim2.Init.Period = 25;
 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	//Call callback as member funtion for encapsulation purposes
+	//Standard callback will do nothing
 	HAL_TIM_Base_MspInit (&htim2);
 	if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
 	{
@@ -27,6 +31,7 @@ void Tim::HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
 	}
 }
 
+//Return sample tick time in us
 uint64_t Tim::sample_tick_us(){
 	return 25;
 }

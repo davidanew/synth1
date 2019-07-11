@@ -1,3 +1,5 @@
+/* Values that are shared between all voices*/
+
 #ifndef PARAMETERS_H
 #define PARAMETERS_H 1
 

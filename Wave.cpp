@@ -1,5 +1,6 @@
 #include "Wave.h"
 
+//Assign memory and ptr to hold waveform data
 void Wave::set_ptr(float* &data_ptr){
 	try{		
 		if (data_ptr == nullptr)
@@ -12,7 +13,7 @@ void Wave::set_ptr(float* &data_ptr){
 
 Wave::Wave(){
 }
-
+//Not deallocating waveforms as they are always needed
 Wave::~Wave(){
 }
 
@@ -21,8 +22,8 @@ Wave::Wave(Wave &source){//error on copy
 	while(1);
 }
 
+//Set the sample from memory based on the phase value (range 0 to 1)
 float Wave::get_value_wptr(float* data_ptr, float phase_rel) const {
-
 	uint32_t location = uint32_t (phase_rel * (float) (num_samples-1));
 	if (location < num_samples){
 		return data_ptr[location];
@@ -37,10 +38,10 @@ Square::Square(){
 }
 
 float*  Square::data_ptr = nullptr;
-
 Square::~Square(){
 }
 
+//Fill memory with square waves
 void Square::fill_memory(){
 	uint32_t i {0};
 	for(i=0 ; i < (num_samples/2) ; i++){
@@ -51,6 +52,7 @@ void Square::fill_memory(){
 	}	
 }
 
+//Get sample using base funtion
 float Square::get_value(float phase_rel) const {
 		return Wave::get_value_wptr(data_ptr,phase_rel);
 }

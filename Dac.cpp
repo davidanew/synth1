@@ -1,10 +1,14 @@
 #include "Dac.h"
 
+//Initailise DAC 
 void Dac::init(uint32_t channel_arg) {
 	channel = channel_arg;
 	DAC_ChannelConfTypeDef sConfig {};
 	hdac.Instance = DAC;
-	hdac.State = HAL_DAC_STATE_RESET;					
+	hdac.State = HAL_DAC_STATE_RESET;
+  //Normally this is a call back, but this is not oo
+	//So manually call member funtion here
+	//Standard call back will do nothing
 	HAL_DAC_MspInit(&hdac);				
 	if (HAL_DAC_Init(&hdac) != HAL_OK)
 	{
@@ -23,6 +27,7 @@ void Dac::init(uint32_t channel_arg) {
 	init_done = true;
 }	
 
+//Output value to DAC with value 0->1
 void Dac::set_value_rel(float value_rel){
 	//if (value_rel <(float)-1.0 || value_rel > (float) 1.0) 
 	//	while(1);
@@ -39,6 +44,7 @@ void Dac::set_value_rel(float value_rel){
 	set_value(dac_value);
 }
 
+//Output value to dac with real value
 void Dac::set_value(uint32_t value){
 //	uint32_t dac_value = value;
 	if (value > 0xFFF)
@@ -60,10 +66,12 @@ void Dac::low(){
 	}
 }
 
+//Read value that the DAC is currently outputting
 uint32_t Dac::get_value(){
 	return HAL_DAC_GetValue ( &hdac , channel);
 }
 
+//Standard init function as member function, not C call back
 void Dac::HAL_DAC_MspInit(DAC_HandleTypeDef* hdac_arg)
 {
 	GPIO_InitTypeDef GPIO_InitStruct {}; //= {0};

@@ -1,6 +1,9 @@
 #include "Filter.h"
 #include "math.h"
 
+//See header for explanation
+
+//Constructor only sets parameters
 Filter::Filter(float cutoff, float theta){
 	//const float term1 = (float)-2.0*pi*((float)cutoff/(float)sample_freq);
 	//const float r = exp((float)-2.0*pi*((float)cutoff/(float)sample_freq));
@@ -15,6 +18,7 @@ Filter::Filter(){
 	//default constructor uses default values which do no filtering
 }
 
+//Propogate values through filter and calculate output
 float Filter::next_sample(float next_x){
 	x0 = next_x;
 	y2 = y1;
