@@ -1,6 +1,4 @@
-class Filter {
-	// change filter to 2 pole low pass
-	
+class Filter {	
 	//from http://www.eecs.umich.edu/courses/eecs206/archive/spring02/notes.dir/iir4.pdf
 	/*
 	x0 -- |b0> --+----------- y0
@@ -41,3 +39,51 @@ public:
 	Filter();
 	float next_sample(float next_x);
 };
+
+/*
+
+Matlab code for expermentation
+
+t = linspace(-pi,pi,40000/1000);
+x = sin(t);
+y = filter (0.15, [1  -0.85], x);
+
+%hold off
+%plot (t,x)
+%hold on
+%plot (t,y)
+%[h,w] = freqz(0.15, [1  -0.85], 1000, 'whole', 40000);
+%plot ((h))
+%[h,w] = freqz(0.15, [1  -0.85], 1000, 40000);
+%hold off
+%plot(10*log(abs(h)))
+%hold on
+
+%freqz(0.15, [1  -0.85], 1000, 40000);
+
+
+% H(Z) = b0/(1-az^-1-az^-2)
+% H(Z) = b0 / (1-2rcos(theta)z^-1+r^2z^-2
+
+
+theta = 0;
+r=0.855;
+
+[h,w] = freqz(1-2*r*cos(theta)+r^2 , [1  -2*r*cos(theta) r^2], 1000, 40000);
+
+plot(abs(h))
+plot(mag2db(abs(h)))
+plot(0:20:999*20, mag2db(abs(h)))
+
+%plot(10 * log10 (abs(h)))
+%plot(0:40:999*40, mag2db(abs(h)))
+
+%theta = pi/20;
+%theta = 0;
+%r=0.85;
+
+%freqz(1-2*r*cos(theta)+r^2, [1  -2*r*cos(theta) r^2], 1000, 40000);
+r=exp(-2*pi*(1000/40000))
+
+*/
+
