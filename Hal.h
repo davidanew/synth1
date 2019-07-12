@@ -6,6 +6,7 @@
 
 class Hal {
 public:
+	[[noreturn]] Hal(Hal &source);
 	static void init(void);
 	static void HAL_MspInit(void);
 };

@@ -1,63 +1,55 @@
+/*
+Two sections, intialisation and run loop
+run loop never exits and execution of each pass is delayed until the next sample tick
+The sample tick is updated by TIM2 IRQ
+The sample is output at the end of the run loop
+This could cause some jitter should be too small to
+be audible
+*/
+
 #include "main.h"
 
-//set this to use alternative main() for testing
+//set this test flag to use alternative main() for testing
 //#define test
 
 void SystemClock_Config(void);
 
 #ifdef test
 int main () {
+  //testing code
 }
 
 #else
 
 int main () {
+	//Hal init always needs to be run
+	Hal::init();
+	//TIM2 used to to update sample clock
+	Tim::init();
+	//Dac 1 used for audio output
+	Dac dac1(DAC_CHANNEL_1);
+	//currently using dac channel 2 to measure run loop execution time
+	Dac dac2_led(DAC_CHANNEL_2);
 	//One voice for each key press
 	const uint32_t num_voices {16};
 	//Stores last processed sample
 	uint64_t sample_tick_local = 0;
-	//
+	//All currrent voices, uses dynamic binding
 	Voice* voice_array[num_voices] = {nullptr};
-	//TODO: Think about intialisation on construction so init does not need to be called
-	Dac dac1;
-	Dac dac2_led;
 	//Holds parameters that are common to all voices
 	Parameters parameters;
 	//TODO: Filter will need to be updated on dial change
 	//what to stat-up with, do we need a last state save?
-	//Filter filter {500,(float)0.1571};
 	Filter filter {1000,(float)0.0};
-	//TODO: hal init always needs to be run. think about checking this from other classes
-	//TODO: Hal and Tim static classes are inconsitant with the other calles. Think about
-	//having the funtions non-static but holding status as a static state
-	Hal::init();
 	//Move clock to full frequency
 	SystemClock_Config();
-	//TIM2 used to to update sample clock
-	Tim::init();
-	dac1.init(DAC_CHANNEL_1);
-	dac2_led.init(DAC_CHANNEL_2);
 	
 	try{
 		//TODO: These will also need to be set with dial
-		//TODO: can keybourd send full status with one keypress?
+		//make sure deconstructed properly when changed
 		parameters.wave_1 = new Sine();
-		parameters.wave_2 = new Sine();	
-		
-		/*
-		float scale = (float) 0.2;
-		
-		voice_array[0] = new Voice(40000,parameters, 250, scale);
-		voice_array[1] = new Voice(40000,parameters, 500, scale);
-		voice_array[2] = new Voice(40000,parameters, 1000, scale);
-		voice_array[3] = new Voice(40000,parameters, 2000, scale);
-		voice_array[4] = new Voice(40000,parameters, 4000, scale);
-		voice_array[5] = new Voice(40000,parameters, 8000, scale);
-		voice_array[6] = new Voice(40000,parameters, 16000, scale);
-		*/
-		
+		parameters.wave_2 = new Sine();		
 		voice_array[0] = new Voice(40000,parameters, 1000, 1.0);
-
 	}
 	catch(...){
 		while(1);
@@ -67,6 +59,7 @@ int main () {
 	//Set local tick value so there is not a large delta when the first
 	//sample is processed
 	sample_tick_local = IRQ_objects::sample_tick;
+	/*main run loop, never exits*/
 	while(1){
 		//wait for next sample tick
 		while (IRQ_objects::sample_tick <= sample_tick_local);
@@ -88,7 +81,7 @@ int main () {
 		const float total_rel = total * (float) 0.5 + (float) 0.5; 	
 		const float filtered_rel = filter.next_sample(total_rel);
 		//dac2_led.set_value_rel(filtered_rel);
-		//Output computed sample to DAC
+		//Output the computed sample to DAC
 		dac1.set_value_rel(filtered_rel);
 		dac2_led.low();
 	}

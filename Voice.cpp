@@ -16,6 +16,11 @@ Voice::Voice(Voice &source){
 	while(1);//error on copy
 }
 
+Voice::~Voice(){
+	//Not needed
+	//Pointer to voices is handled in parameters
+}
+
 //rename to get_sample
 float Voice::get_value(const uint64_t sample_tick) {
 	//coded to prevent costly int to float conversion and fmod

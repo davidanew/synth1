@@ -1,7 +1,7 @@
 #include "Dac.h"
 
 //Initailise DAC 
-void Dac::init(uint32_t channel_arg) {
+Dac::Dac(uint32_t channel_arg) {
 	channel = channel_arg;
 	DAC_ChannelConfTypeDef sConfig {};
 	hdac.Instance = DAC;
@@ -26,6 +26,12 @@ void Dac::init(uint32_t channel_arg) {
 	}
 	init_done = true;
 }	
+
+Dac::Dac(Dac &source){
+	//error on copy
+	(void)source;
+	while(1);//error on copy
+}
 
 //Output value to DAC with value 0->1
 void Dac::set_value_rel(float value_rel){

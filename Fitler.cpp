@@ -18,6 +18,12 @@ Filter::Filter(){
 	//default constructor uses default values which do no filtering
 }
 
+Filter::Filter(Filter &source){
+	//error on copy
+	(void)source;
+	while(1);//error on copy
+}
+
 //Propogate values through filter and calculate output
 float Filter::next_sample(float next_x){
 	x0 = next_x;

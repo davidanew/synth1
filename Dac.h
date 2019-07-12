@@ -11,12 +11,11 @@ class Dac {
 	DAC_HandleTypeDef hdac {};
 	uint32_t channel = DAC_CHANNEL_1;
 	bool init_done = false;
-	
-//TODO: need copy construtor that goes to error	
-		
+
 public:	
 //	Dac();
-	void init(uint32_t channel_arg); 
+	Dac(uint32_t channel_arg); 
+  [[noreturn]] Dac(Dac &source);
   void set_value_rel(float value_rel);
   void set_value(uint32_t value_rel);
 	void high();

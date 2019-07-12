@@ -1,5 +1,11 @@
 #include "Tim.h"
 
+Tim::Tim(Tim &source){
+	//error on copy
+	(void)source;
+	while(1);//error on copy
+}
+
 //Currently uses TIM2
 //Hard coded values for 40kHz
 void Tim::init(void)

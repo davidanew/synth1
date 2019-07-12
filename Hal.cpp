@@ -1,5 +1,11 @@
 #include "Hal.h"
 
+Hal::Hal(Hal &source){
+	//error on copy
+	(void)source;
+	while(1);//error on copy
+}
+
 void Hal::init(void){
 	HAL_Init();
 	//Run callback from member function

@@ -39,6 +39,7 @@ class Filter {
 public:	
 	Filter(float cutoff, float theta);
 	Filter();
+  [[noreturn]] Filter(Filter &source);
 	float next_sample(float next_x);
 };
 
