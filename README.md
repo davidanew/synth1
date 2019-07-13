@@ -3,9 +3,9 @@ C++ Embedded Synthesizer - work in progress!
 
 Audio sythesiser for STM32 microcontroller
 
-Synthesis of waveforms by combining waveforms\
-16 voices\
-2 pole IIR filter
+Synthesis of waveforms by combining waveforms.\
+16 voices.\
+2 pole IIR filter.
 
 Entry point:
 
