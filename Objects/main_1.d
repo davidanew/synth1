@@ -37,6 +37,8 @@
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
+  C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
+  C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h \
   Tim.h Hal.h IRQ_objects.h Voice.h Parameters.h Wave.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\math.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \

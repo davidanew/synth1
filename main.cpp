@@ -10,14 +10,119 @@ be audible
 #include "main.h"
 
 //set this test flag to use alternative main() for testing
-//#define test
+#define test
 
 void SystemClock_Config(void);
 
+
+
 #ifdef test
+
+
+
+/*
+UART_HandleTypeDef huart2;
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+
 int main () {
   //testing code
+	Hal::init();
+	MX_GPIO_Init();
+  MX_USART2_UART_Init();
+	uint8_t buffer[4] = {1,2,3,4};
+  //HAL_UART_Receive(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY);
+	while (1)
+		HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY );
+	while(1);
 }
+*/
+
+
+
+static UART_HandleTypeDef s_UARTHandle = UART_HandleTypeDef();
+ 
+void ms_delay (int ms); 
+ 
+int main(void)
+{
+    HAL_Init();
+ 
+    __USART1_CLK_ENABLE();
+    __GPIOA_CLK_ENABLE();
+    
+    GPIO_InitTypeDef GPIO_InitStructure;
+ 
+    GPIO_InitStructure.Pin = GPIO_PIN_9;
+    GPIO_InitStructure.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStructure.Alternate = GPIO_AF7_USART1;
+    GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;
+    GPIO_InitStructure.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+    
+    GPIO_InitStructure.Pin = GPIO_PIN_10;
+    GPIO_InitStructure.Mode = GPIO_MODE_AF_OD;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 
+    s_UARTHandle.Instance        = USART1;
+    s_UARTHandle.Init.BaudRate   = 31250;
+    s_UARTHandle.Init.WordLength = UART_WORDLENGTH_8B;
+    s_UARTHandle.Init.StopBits   = UART_STOPBITS_1;
+    s_UARTHandle.Init.Parity     = UART_PARITY_NONE;
+    s_UARTHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
+    s_UARTHandle.Init.Mode       = UART_MODE_TX_RX;
+    
+    if (HAL_UART_Init(&s_UARTHandle) != HAL_OK)
+        asm("bkpt 255");
+    
+    for (;;)
+    {
+        uint8_t buffer[4] = {127,127,127,127};
+        //HAL_UART_Receive(&s_UARTHandle, buffer, sizeof(buffer), HAL_MAX_DELAY);
+        HAL_UART_Transmit(&s_UARTHandle, buffer, sizeof(buffer), HAL_MAX_DELAY);
+				    	ms_delay(800);				
+    }
+}
+
+
+
+
+
+
+void ms_delay (int ms)
+{
+  while (ms-- > 0)
+    {
+      volatile int x = 500;
+      while (x-- > 0)
+	__asm ("nop");
+    }
+}
+		
+/*
+
+int main (void)
+{
+    RCC->AHB1RSTR |= RCC_AHB1RSTR_GPIOARST;    // Reset GPIOA 
+    RCC->AHB1RSTR = 0;                         // Exit reset state
+    
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;       // Enable GPIOA clock
+    GPIOA->MODER |= GPIO_MODER_MODER5_0;	   // Enable Output on A5 (LED2 on Nucleo F401RE board)
+	  GPIOA->MODER |= GPIO_MODER_MODER9_0;	   // Enable Output on PA9
+
+    
+    while (1)
+    {
+    	GPIOA->ODR ^= (1 << (5));	// toggle LED pin
+			GPIOA->ODR ^= (1 << (9));	// toggle LED pin
+
+    	ms_delay(800);
+
+    }
+
+  return 0;
+}
+*/
 
 #else
 
@@ -138,6 +243,61 @@ void SystemClock_Config(void)
   }
 }
 
+/*
+
+static void MX_USART2_UART_Init(void)
+{
 
 
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 31250;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    while(1);
+  }
+
+
+}
+
+
+static void MX_GPIO_Init(void)
+{
+
+
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+}
+
+
+void HAL_UART_MspInit(UART_HandleTypeDef* huart)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  if(huart->Instance==USART2)
+  {
+
+    __HAL_RCC_USART2_CLK_ENABLE();
+  
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+
+    //PA2     ------> USART2_TX
+    //PA3     ------> USART2_RX 
+
+    GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_3;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  }
+
+}
+
+*/
 
