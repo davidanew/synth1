@@ -1,11 +1,7 @@
 #include "USART2_vcom.h"
 
-//extern UART_HandleTypeDef huart2 ;
-
-
 Usart_2_vcom::Usart_2_vcom(void)
 {
-
   __HAL_RCC_USART2_CLK_ENABLE();
 	__HAL_RCC_GPIOA_CLK_ENABLE();		
 	GPIO_InitTypeDef GPIO_InitStruct {};
@@ -29,12 +25,9 @@ Usart_2_vcom::Usart_2_vcom(void)
 		//Error_Handler();
 		while(1);
 	}
-
 }
 
-
 void Usart_2_vcom::transmit(uint8_t* buffer_ptr, uint16_t size) {
-//	uint8_t buffer[1] = {'X'};
 	HAL_UART_Transmit(&huart2, buffer_ptr, size, HAL_MAX_DELAY );
 }
 

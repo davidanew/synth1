@@ -23,12 +23,9 @@ Usart_1::Usart_1(void)
 	{
 		while(1); //error
 	}
-		
 }
 
-
 void Usart_1::receive(uint8_t* buffer_ptr, uint16_t size) {
-	//uint8_t buffer[1] = {'X'};
 	HAL_UART_Receive(&huart1, buffer_ptr, size , HAL_MAX_DELAY) ;
 }
 
