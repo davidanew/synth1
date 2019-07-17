@@ -14,18 +14,16 @@ be audible
 
 void SystemClock_Config(void);
 
-
-
 #ifdef test
 
-
-
-
+//Currently testing MIDI input and outputting to st-link virtual com port
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 static void MX_GPIO_Init(void);
+//Connected to MIDI device
 static void MX_USART1_UART_Init(void);
+//Goes to virtual com port
 static void MX_USART2_UART_Init(void);
 
 int main () {
@@ -34,106 +32,18 @@ int main () {
 	MX_GPIO_Init();
   MX_USART1_UART_Init();
 	MX_USART2_UART_Init();
-
+	
+	//Note messages are 3 bytes, but aftertouch is 2, this causes problems
+	//also note off seems to be wrong?
 	uint8_t buffer[3] = {0,0,0};
 	//uint8_t buffer[1] = {'a'};
-
+	
+	//Output midi to com port
 	while (1){
 		HAL_UART_Receive(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY) ;
 		HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY );
 	}
-
-
 }
-
-
-/*
-
-static UART_HandleTypeDef s_UARTHandle = UART_HandleTypeDef();
- 
-void ms_delay (int ms); 
- 
-int main(void)
-{
-    HAL_Init();
- 
-    __USART1_CLK_ENABLE();
-    __GPIOA_CLK_ENABLE();
-    
-    GPIO_InitTypeDef GPIO_InitStructure;
- 
-    GPIO_InitStructure.Pin = GPIO_PIN_9;
-    GPIO_InitStructure.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStructure.Alternate = GPIO_AF7_USART1;
-    GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;
-    GPIO_InitStructure.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
-    
-    GPIO_InitStructure.Pin = GPIO_PIN_10;
-    GPIO_InitStructure.Mode = GPIO_MODE_AF_OD;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
- 
-    s_UARTHandle.Instance        = USART1;
-    s_UARTHandle.Init.BaudRate   = 31250;
-    s_UARTHandle.Init.WordLength = UART_WORDLENGTH_8B;
-    s_UARTHandle.Init.StopBits   = UART_STOPBITS_1;
-    s_UARTHandle.Init.Parity     = UART_PARITY_NONE;
-    s_UARTHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
-    s_UARTHandle.Init.Mode       = UART_MODE_TX_RX;
-    
-    if (HAL_UART_Init(&s_UARTHandle) != HAL_OK)
-        asm("bkpt 255");
-    
-    for (;;)
-    {
-        uint8_t buffer[4] = {127,127,127,127};
-        //HAL_UART_Receive(&s_UARTHandle, buffer, sizeof(buffer), HAL_MAX_DELAY);
-        HAL_UART_Transmit(&s_UARTHandle, buffer, sizeof(buffer), HAL_MAX_DELAY);
-				    	ms_delay(800);				
-    }
-}
-
-
-
-
-
-
-void ms_delay (int ms)
-{
-  while (ms-- > 0)
-    {
-      volatile int x = 500;
-      while (x-- > 0)
-	__asm ("nop");
-    }
-}
-
-*/
-
-/*
-
-int main (void)
-{
-    RCC->AHB1RSTR |= RCC_AHB1RSTR_GPIOARST;    // Reset GPIOA 
-    RCC->AHB1RSTR = 0;                         // Exit reset state
-    
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;       // Enable GPIOA clock
-    GPIOA->MODER |= GPIO_MODER_MODER5_0;	   // Enable Output on A5 (LED2 on Nucleo F401RE board)
-	  GPIOA->MODER |= GPIO_MODER_MODER9_0;	   // Enable Output on PA9
-
-    
-    while (1)
-    {
-    	GPIOA->ODR ^= (1 << (5));	// toggle LED pin
-			GPIOA->ODR ^= (1 << (9));	// toggle LED pin
-
-    	ms_delay(800);
-
-    }
-
-  return 0;
-}
-*/
 
 #else
 
@@ -254,7 +164,7 @@ void SystemClock_Config(void)
   }
 }
 
-
+//TODO: All this in classes when testing done
 
 static void MX_USART1_UART_Init(void)
 {
