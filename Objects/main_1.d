@@ -50,4 +50,5 @@
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\limits \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\__undef_macros \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stdlib.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h Filter.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h Filter.h USART1.h \
+  USART2_vcom.h

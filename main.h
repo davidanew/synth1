@@ -5,6 +5,10 @@
 #include "Voice.h"
 #include "Parameters.h"
 #include "Filter.h"
+#include "USART1.h"
+#include "USART2_vcom.h"
+//static UART_HandleTypeDef huart2;
+
 
 
 

@@ -17,31 +17,46 @@ void SystemClock_Config(void);
 #ifdef test
 
 //Currently testing MIDI input and outputting to st-link virtual com port
-UART_HandleTypeDef huart1;
-UART_HandleTypeDef huart2;
 
-static void MX_GPIO_Init(void);
+//static void MX_GPIO_Init(void);
 //Connected to MIDI device
-static void MX_USART1_UART_Init(void);
+//static void MX_USART1_UART_Init(void);
 //Goes to virtual com port
-static void MX_USART2_UART_Init(void);
+//static void MX_USART2_UART_Init(void);
+
+//UART_HandleTypeDef huart1;
+//UART_HandleTypeDef huart2;
+
+//int dsfsd;
+
 
 int main () {
   //testing code
 	Hal::init();
-	MX_GPIO_Init();
-  MX_USART1_UART_Init();
-	MX_USART2_UART_Init();
+	//MX_GPIO_Init();
 	
-	//Note messages are 3 bytes, but aftertouch is 2, this causes problems
-	//also note off seems to be wrong?
-	//uint8_t buffer[3] = {0,0,0};
-	uint8_t buffer[1] = {'X'};
+	//__HAL_RCC_GPIOA_CLK_ENABLE();
+
+	
+
+  //MX_USART1_UART_Init();
+	//MX_USART2_UART_Init();
+	Usart_1 usart_1;
+	Usart_2_vcom usart_2;
+	
+
+
+	
+	uint8_t buffer_arr[1] = {'X'};
 	
 	//Output midi to com port
 	while (1){
-		HAL_UART_Receive(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY) ;
-		HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY );
+		usart_1.receive(buffer_arr, sizeof(buffer_arr));
+		usart_2.transmit(buffer_arr, sizeof(buffer_arr));
+		
+		//HAL_UART_Receive(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY) ;
+		//HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY );
+		
 	}
 }
 
@@ -163,8 +178,7 @@ void SystemClock_Config(void)
     while(1);
   }
 }
-
-//TODO: All this in classes when testing done
+/*
 
 static void MX_USART1_UART_Init(void)
 {
@@ -209,6 +223,7 @@ static void MX_GPIO_Init(void)
 }
 
 
+
 void HAL_UART_MspInit(UART_HandleTypeDef* huart)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -238,7 +253,10 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 		
   }
+	
 }
+
+*/
 
 
 

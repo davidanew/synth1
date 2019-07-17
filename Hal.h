@@ -2,7 +2,7 @@
 
 #include "stm32f4xx_hal.h"
 
-//TODO: Error on copy constructor
+//TODO: Mspinit can be private - also look at other classes
 
 class Hal {
 public:

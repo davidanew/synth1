@@ -482,6 +482,26 @@
               <FileType>8</FileType>
               <FilePath>.\Filter.h</FilePath>
             </File>
+            <File>
+              <FileName>USART2_vcom.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USART2_vcom.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>USART2_vcom.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USART2_vcom.h</FilePath>
+            </File>
+            <File>
+              <FileName>USART1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USART1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>USART1.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USART1.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -973,6 +993,26 @@
               <FileName>Filter.h</FileName>
               <FileType>8</FileType>
               <FilePath>.\Filter.h</FilePath>
+            </File>
+            <File>
+              <FileName>USART2_vcom.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USART2_vcom.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>USART2_vcom.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USART2_vcom.h</FilePath>
+            </File>
+            <File>
+              <FileName>USART1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USART1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>USART1.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\USART1.h</FilePath>
             </File>
           </Files>
         </Group>
