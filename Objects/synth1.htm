@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\synth1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\synth1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6120001: Last Updated: Wed Jul 17 13:17:19 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6120001: Last Updated: Wed Jul 17 13:30:02 2019
 <BR><P>
 <H3>Maximum Stack Usage =        120 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1213,8 +1213,8 @@ Global Symbols
 
 <P><STRONG><a name="[c9]"></a>HAL_GetTick</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f4xx_hal.o(.text.HAL_GetTick))
 <BR><BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
 </UL>
 
@@ -1559,9 +1559,13 @@ Global Symbols
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_HalfDuplex_Init
 </UL>
 
-<P><STRONG><a name="[10f]"></a>HAL_UART_Receive</STRONG> (Thumb, 172 bytes, Stack size 24 bytes, stm32f4xx_hal_uart.o(.text.HAL_UART_Receive), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<P><STRONG><a name="[10f]"></a>HAL_UART_Receive</STRONG> (Thumb, 172 bytes, Stack size 24 bytes, stm32f4xx_hal_uart.o(.text.HAL_UART_Receive))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = HAL_UART_Receive &rArr; UART_WaitOnFlagUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[111]"></a>HAL_UART_Transmit</STRONG> (Thumb, 174 bytes, Stack size 24 bytes, stm32f4xx_hal_uart.o(.text.HAL_UART_Transmit))
@@ -2641,11 +2645,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;libunwind::UnwindCursor&lang;libunwind::LocalAddressSpace, libunwind::Registers_arm&rang;::stepWithEHABI()
 </UL>
 
-<P><STRONG><a name="[a8]"></a>main</STRONG> (Thumb, 144 bytes, Stack size 24 bytes, main_1.o(.text.main))
+<P><STRONG><a name="[a8]"></a>main</STRONG> (Thumb, 160 bytes, Stack size 24 bytes, main_1.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = main &rArr; HAL_UART_Init &rArr; HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Hal::init()
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main

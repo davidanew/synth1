@@ -35,13 +35,14 @@ int main () {
   MX_USART1_UART_Init();
 	MX_USART2_UART_Init();
 
-	uint8_t buffer[1] = {0x66};
+	uint8_t buffer[3] = {0,0,0};
 	//uint8_t buffer[1] = {'a'};
 
-	while (1)
-   //HAL_UART_Receive(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY);
-	
-	 HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY );
+	while (1){
+		HAL_UART_Receive(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY) ;
+		HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY );
+	}
+
 
 }
 
