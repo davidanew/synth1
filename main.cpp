@@ -30,7 +30,7 @@ int main () {
 	Hal::init();
 	MX_GPIO_Init();
   MX_USART1_UART_Init();
-	uint8_t buffer[4] = {1,2,3,4};
+	uint8_t buffer[3] = {0,0,0};
 	while (1)
   HAL_UART_Receive(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY);
 	//while (1)
