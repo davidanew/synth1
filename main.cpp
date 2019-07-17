@@ -22,20 +22,27 @@ void SystemClock_Config(void);
 
 
 UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart2;
+
 static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_USART2_UART_Init(void);
 
 int main () {
   //testing code
 	Hal::init();
 	MX_GPIO_Init();
   MX_USART1_UART_Init();
-	uint8_t buffer[3] = {0,0,0};
+	MX_USART2_UART_Init();
+
+	uint8_t buffer[1] = {0x66};
+	//uint8_t buffer[1] = {'a'};
+
 	while (1)
-  HAL_UART_Receive(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY);
-	//while (1)
-	//	HAL_UART_Transmit(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY );
-	//while(1);
+   //HAL_UART_Receive(&huart1, buffer, sizeof(buffer), HAL_MAX_DELAY);
+	
+	 HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), HAL_MAX_DELAY );
+
 }
 
 
@@ -269,6 +276,33 @@ static void MX_USART1_UART_Init(void)
 }
 
 
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 9600;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+    while(1);
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
+
+}
+
+
 static void MX_GPIO_Init(void)
 {
   __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -308,6 +342,31 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+  }
+	
+  if(huart->Instance==USART2)
+  {
+  /* USER CODE BEGIN USART2_MspInit 0 */
+
+  /* USER CODE END USART2_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_USART2_CLK_ENABLE();
+  
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+		
+		
+		    GPIO_InitStruct.Pin = GPIO_PIN_2;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
+    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    
+    GPIO_InitStruct.Pin = GPIO_PIN_3;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+		
   }
 
 }
