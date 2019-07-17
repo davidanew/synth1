@@ -35,8 +35,8 @@ int main () {
 	
 	//Note messages are 3 bytes, but aftertouch is 2, this causes problems
 	//also note off seems to be wrong?
-	uint8_t buffer[3] = {0,0,0};
-	//uint8_t buffer[1] = {'a'};
+	//uint8_t buffer[3] = {0,0,0};
+	uint8_t buffer[1] = {'X'};
 	
 	//Output midi to com port
 	while (1){
@@ -168,8 +168,6 @@ void SystemClock_Config(void)
 
 static void MX_USART1_UART_Init(void)
 {
-
-
   huart1.Instance = USART1;
   huart1.Init.BaudRate = 31250;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
@@ -182,26 +180,11 @@ static void MX_USART1_UART_Init(void)
   {
     while(1);
   }
-
-
 }
 
 
 static void MX_USART2_UART_Init(void)
 {
-/*
-  huart2.Instance = USART2;
-  huart2.Init.BaudRate = 9600;
-  huart2.Init.WordLength = UART_WORDLENGTH_8B;
-  huart2.Init.StopBits = UART_STOPBITS_1;
-  huart2.Init.Parity = UART_PARITY_NONE;
-  huart2.Init.Mode = UART_MODE_TX_RX;
-  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart2) != HAL_OK)
-    while(1);
-	
-	*/
 
   huart2.Instance = USART2;
   huart2.Init.BaudRate = 115200 ;
@@ -239,39 +222,13 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-				
-/*
-    GPIO_InitStruct.Pin = GPIO_PIN_9;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
-    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-    
-    GPIO_InitStruct.Pin = GPIO_PIN_10;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-*/
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);			
   }
 	
   if(huart->Instance==USART2)
   {
     __HAL_RCC_USART2_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
-		
-		/*
-		GPIO_InitStruct.Pin = GPIO_PIN_2;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
-    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-    
-    GPIO_InitStruct.Pin = GPIO_PIN_3;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-		*/
 		
 		GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_3;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -280,10 +237,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 		
-
-		
   }
-
 }
 
 
