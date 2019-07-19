@@ -36,11 +36,7 @@ void Tests::uart_fast(void) {
 }
 
 
-void original_main() {
-	//Tests here
-	Tests::uart();
-	//End of tests
-	
+void Tests::original_main() {
 	//Hal init always needs to be run
 	Hal::init();
 	//TIM2 used to to update sample clock

@@ -13,7 +13,6 @@ class Dac {
 	bool init_done = false;
 
 public:	
-//	Dac();
 	Dac(uint32_t channel_arg); 
   [[noreturn]] Dac(Dac &source);
   void set_value_rel(float value_rel);
