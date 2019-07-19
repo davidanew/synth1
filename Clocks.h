@@ -6,6 +6,8 @@
 class Clocks {
 public:
 	static void SystemClock_Config(void);
+	[[noreturn]] Clocks(Clocks &source);
+	[[noreturn]] Clocks();
 };
 
 #endif

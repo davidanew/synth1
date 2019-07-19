@@ -37,4 +37,15 @@ bool Usart_1::is_data_ready(void){
 	return status;
 }
 
+Usart_1::Usart_1(Usart_1 &source){
+	//error on copy
+	(void)source;
+	while(1);//error on copy
+}
+
+Usart_1::Usart_1(){
+	//error on object creation
+	while(1);
+}
+
 

@@ -101,3 +101,15 @@ void Tests::original_main() {
 		dac2_led.low();
 	}
 }
+
+Tests::Tests(Tests &source){
+	(void)source;
+	while(1);//error on copy
+}
+
+Tests::Tests(){
+	//error on object creation
+	while(1);
+}
+
+

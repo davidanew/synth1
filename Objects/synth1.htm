@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\synth1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\synth1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6120001: Last Updated: Fri Jul 19 16:13:05 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6120001: Last Updated: Fri Jul 19 16:27:39 2019
 <BR><P>
 <H3>Maximum Stack Usage =        408 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1000,9 +1000,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
 <LI>Call Chain = abort &rArr; __rt_SIGABRT &rArr; __rt_SIGABRT_inner &rArr; __default_signal_display &rArr; _ttywrch
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGABRT
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
+<BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGABRT
 </UL>
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;libunwind::UnwindCursor&lang;libunwind::LocalAddressSpace, libunwind::Registers_arm&rang;::setReg(int, unsigned)
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;libunwind::UnwindCursor&lang;libunwind::LocalAddressSpace, libunwind::Registers_arm&rang;::getReg(int)
@@ -1211,8 +1211,8 @@ Global Symbols
 <P><STRONG><a name="[cf]"></a>__sig_exit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, defsig_exit.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGABRT
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM
+<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGABRT
 </UL>
 
 <P><STRONG><a name="[ce]"></a>__rt_SIGABRT_inner</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, defsig_abrt_inner.o(.text))
@@ -1462,8 +1462,8 @@ Global Symbols
 <P><STRONG><a name="[f0]"></a>HAL_TIM_Base_Init</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_Base_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_TIM_Base_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
-<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_MspInit
+<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_MspInit
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tim::init()
 </UL>
@@ -1489,8 +1489,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f6]"></a>HAL_TIM_Encoder_Init</STRONG> (Thumb, 152 bytes, Stack size 40 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_Encoder_Init), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Encoder_MspInit
+<BR><BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Encoder_MspInit
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
 
 <P><STRONG><a name="[f7]"></a>HAL_TIM_Encoder_MspInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_Encoder_MspInit), UNUSED)
@@ -1532,8 +1532,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ff]"></a>HAL_TIM_IC_Init</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_IC_Init), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IC_MspInit
+<BR><BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IC_MspInit
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
 
 <P><STRONG><a name="[100]"></a>HAL_TIM_IC_MspInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_IC_MspInit), UNUSED)
@@ -1568,13 +1568,13 @@ Global Symbols
 <P><STRONG><a name="[107]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 362 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_TIM_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_TriggerCallback
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_PulseFinishedCallback
+<BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_PulseFinishedCallback
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_DelayElapsedCallback
 <LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IC_CaptureCallback
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_CommutationCallback
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_BreakCallback
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_TriggerCallback
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler_cpp()
 </UL>
@@ -1584,8 +1584,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[10f]"></a>HAL_TIM_OC_Init</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_OC_Init), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
-<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_MspInit
+<BR><BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_MspInit
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
 
 <P><STRONG><a name="[110]"></a>HAL_TIM_OC_MspInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_OC_MspInit), UNUSED)
@@ -1618,8 +1618,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[117]"></a>HAL_TIM_OnePulse_Init</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_OnePulse_Init), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OnePulse_MspInit
+<BR><BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OnePulse_MspInit
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
 
 <P><STRONG><a name="[118]"></a>HAL_TIM_OnePulse_MspInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_OnePulse_MspInit), UNUSED)
@@ -1643,8 +1643,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[11d]"></a>HAL_TIM_PWM_Init</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_PWM_Init), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_MspInit
+<BR><BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_MspInit
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Base_SetConfig
 </UL>
 
 <P><STRONG><a name="[11e]"></a>HAL_TIM_PWM_MspInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_hal_tim.o(.text.HAL_TIM_PWM_MspInit), UNUSED)
@@ -1753,10 +1753,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f9]"></a>TIM_CCxChannelCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f4xx_hal_tim.o(.text.TIM_CCxChannelCmd), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop_IT
-<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop_DMA
-<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start_IT
+<BR><BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start_IT
 <LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start_DMA
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OnePulse_Stop_IT
@@ -1781,6 +1778,9 @@ Global Symbols
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Encoder_Start_IT
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Encoder_Start_DMA
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Encoder_Start
+<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop_IT
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop_DMA
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop
 </UL>
 
 <P><STRONG><a name="[67]"></a>TIM_DMACaptureCplt</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(.text.TIM_DMACaptureCplt))
@@ -2601,8 +2601,8 @@ Global Symbols
 <P><STRONG><a name="[220]"></a>std::bad_array_new_length::~bad_array_new_length__sub_object()</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, stdlib_exception.cpp.o(.text._ZNSt9exceptionD2Ev), UNUSED)
 
 <P><STRONG><a name="[6f]"></a>std::bad_alloc::~bad_alloc()</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, stdlib_exception.cpp.o(.text._ZNSt9exceptionD2Ev))
-<BR>[Address Reference Count : 2]<UL><LI> new.cpp.o(.text._ZnwjSt11align_val_t)
-<LI> new.cpp.o(.text._Znwj)
+<BR>[Address Reference Count : 2]<UL><LI> new.cpp.o(.text._Znwj)
+<LI> new.cpp.o(.text._ZnwjSt11align_val_t)
 </UL>
 <P><STRONG><a name="[221]"></a>std::bad_alloc::~bad_alloc__sub_object()</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, stdlib_exception.cpp.o(.text._ZNSt9exceptionD2Ev), UNUSED)
 
@@ -3048,12 +3048,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 13]<UL><LI> main_1.o(.ARM.extab.text.main)
 <LI> wave_1.o(.ARM.extab.text._ZN4Wave7set_ptrERPf)
+<LI> new.cpp.o(.ARM.extab.text._ZnwjRKSt9nothrow_t)
 <LI> new.cpp.o(.ARM.extab.text._ZnajRKSt9nothrow_t)
 <LI> new.cpp.o(.ARM.extab.text._ZnwjSt11align_val_tRKSt9nothrow_t)
-<LI> new.cpp.o(.ARM.extab.text._ZnajSt11align_val_tRKSt9nothrow_t)
-<LI> new.cpp.o(.ARM.extab.text._ZnwjRKSt9nothrow_t)
 <LI> cxa_exception.cpp.o(.ARM.extab.text.__cxa_allocate_exception)
 <LI> cxa_personality.cpp.o(.ARM.extab.text.__cxa_call_unexpected)
+<LI> new.cpp.o(.ARM.extab.text._ZnajSt11align_val_tRKSt9nothrow_t)
 <LI> cxa_exception.cpp.o(.ARM.extab.text.__cxa_begin_cleanup)
 <LI> cxa_exception.cpp.o(.ARM.extab.text.__cxa_begin_catch)
 <LI> cxa_exception.cpp.o(.ARM.extab.text.__cxa_decrement_exception_refcount)
@@ -3123,9 +3123,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
 <LI>Call Chain = unw_init_local &rArr; libunwind::UnwindCursor&lang;libunwind::LocalAddressSpace, libunwind::Registers_arm&rang;::setInfoBasedOnIPRegister(bool) &rArr; libunwind::UnwindCursor&lang;libunwind::LocalAddressSpace, libunwind::Registers_arm&rang;::getInfoFromEHABISection(unsigned, const libunwind::UnwindInfoSections&) &rArr; abort &rArr; __rt_SIGABRT &rArr; __rt_SIGABRT_inner &rArr; __default_signal_display &rArr; _ttywrch
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;libunwind::UnwindCursor&lang;libunwind::LocalAddressSpace, libunwind::Registers_arm&rang;::setInfoBasedOnIPRegister(bool)
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;libunwind::UnwindCursor&lang;libunwind::LocalAddressSpace, libunwind::Registers_arm&rang;::setInfoBasedOnIPRegister(bool)
 <LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr8
+<LI><a href="#[1ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ZL13unwind_phase2P13unw_context_tP12unw_cursor_tP21_Unwind_Control_Blockb
 <LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Unwind_RaiseException

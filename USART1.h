@@ -9,6 +9,9 @@ public:
 	static void init (void);
   static void receive(uint8_t* buffer_ptr, uint16_t size);
 	static bool is_data_ready();
+	[[noreturn]] Usart_1(Usart_1 &source);
+	[[noreturn]] Usart_1();
+
 };
 
 #endif

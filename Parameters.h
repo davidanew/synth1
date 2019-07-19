@@ -13,6 +13,7 @@ struct Parameters {
 	uint64_t period_in_ticks {1000};
 	Parameters();
 	Parameters(const Parameters &source);
+	
 };
 
 #endif

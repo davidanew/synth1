@@ -33,5 +33,16 @@ void Usart_2_vcom::transmit(uint8_t* buffer_ptr, uint16_t size) {
 	HAL_UART_Transmit(&huart2, buffer_ptr, size, HAL_MAX_DELAY );
 }
 
+Usart_2_vcom::Usart_2_vcom(Usart_2_vcom &source){
+	//error on copy
+	(void)source;
+	while(1);//error on copy
+}
+
+Usart_2_vcom::Usart_2_vcom(){
+	//error on object creation
+	while(1);
+}
+
 
 

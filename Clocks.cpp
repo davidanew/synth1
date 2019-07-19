@@ -48,3 +48,14 @@ void Clocks::SystemClock_Config(void)
     while(1);
   }
 }
+
+Clocks::Clocks(Clocks &source){
+	(void)source;
+	while(1);//error on copy
+}
+
+Clocks::Clocks(){
+	//error on object creation
+	while(1);
+}
+
