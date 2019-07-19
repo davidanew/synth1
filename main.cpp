@@ -9,12 +9,38 @@ be audible
 
 #include "main.h"
 
+
+//One voice for each key press
+const uint32_t num_voices {16};
+
+void output_sample (Voice** voice_array, const uint64_t sample_tick_local, Dac &dac1, Filter &filter)
+//voice array is a pointer to pointer to voice objects
+{
+
+	uint32_t i {0};
+	float total {0};
+	//Loop though all voices and get the sample for the valid voices
+	//Add to total output value
+	for (i=0 ; i<num_voices ; i++){
+		if (voice_array[i] != nullptr) {
+			total += (float) 1 * voice_array[i]->get_value(sample_tick_local);
+		}
+	}
+	//const float dac_value_float = voice_array[0]->get_value(sample_tick_local);
+	//_rel means value from 0 to 1
+	const float total_rel = total * (float) 0.5 + (float) 0.5; 	
+	const float filtered_rel = filter.next_sample(total_rel);
+	//dac2_led.set_value_rel(filtered_rel);
+	//Output the computed sample to DAC
+	dac1.set_value_rel(filtered_rel);
+}
+
+
 int main () {
 	/************Tests here ******************/
 	//Tests::uart();
 	//Tests::uart_fast();
 	//Tests::original_main();
-
 	/**********End of tests *****************/
 	
 	//Hal init always needs to be run
@@ -28,8 +54,7 @@ int main () {
 	Dac dac1(DAC_CHANNEL_1);
 	//currently using dac channel 2 to measure run loop execution time
 	Dac dac2_led(DAC_CHANNEL_2);
-	//One voice for each key press
-	const uint32_t num_voices {16};
+
 	//Stores last processed sample
 	uint64_t sample_tick_local = 0;
 	//All current voices, uses dynamic binding
@@ -74,11 +99,17 @@ int main () {
 		}
 		//wait for next sample tick
 		while (IRQ_objects::sample_tick <= sample_tick_local){} 
+		
+		//Indicates processing started
+		dac2_led.high();
+		//Reset variable for next sample
+		sample_tick_local = IRQ_objects::sample_tick;
+		
+		output_sample(voice_array,sample_tick_local,dac1,filter);
+			
+		/*
 		{// this can be sepeare funtion but what about all the variables?
-			//Indicates processing started
-			dac2_led.high();
-			//Reset variable for next sample
-			sample_tick_local = IRQ_objects::sample_tick;
+
 			uint32_t i {0};
 			float total {0};
 			//Loop though all voices and get the sample for the valid voices
@@ -95,9 +126,17 @@ int main () {
 			//dac2_led.set_value_rel(filtered_rel);
 			//Output the computed sample to DAC
 			dac1.set_value_rel(filtered_rel);
-			dac2_led.low();
 		}
+		*/
+		
+		dac2_led.low();
+		
 	}
+	
+	
+	
+	
+	
 }
 
 
