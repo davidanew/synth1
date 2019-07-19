@@ -12,6 +12,7 @@ be audible
 int main () {
 	//Tests here
 	//Tests::uart();
+	Tests::uart_fast();
 	//End of tests
 	
 	//Hal init always needs to be run

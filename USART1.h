@@ -8,6 +8,7 @@ class Usart_1 {
 public:	
 	static void init (void);
   static void receive(uint8_t* buffer_ptr, uint16_t size);
+	static bool is_data_ready();
 };
 
 #endif

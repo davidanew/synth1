@@ -31,3 +31,10 @@ void Usart_1::receive(uint8_t* buffer_ptr, uint16_t size) {
 	HAL_UART_Receive(&huart1, buffer_ptr, size , HAL_MAX_DELAY) ;
 }
 
+bool Usart_1::is_data_ready(void){
+	bool status;
+	status = (((&huart1)->Instance->SR & UART_FLAG_RXNE) == UART_FLAG_RXNE);
+	return status;
+}
+
+

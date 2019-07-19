@@ -1,5 +1,7 @@
 #include "Tests.h"
 
+//TODO: need to try quick read
+
 void Tests::uart(void) {
   //testing code
 	Hal::init();
@@ -15,6 +17,24 @@ void Tests::uart(void) {
 		Usart_2_vcom::transmit(buffer_arr, sizeof(buffer_arr));
 	}
 }
+
+void Tests::uart_fast(void) {
+  //testing code
+	Hal::init();
+	//MIDI input
+	Usart_1::init();
+	//Virtual com port
+	Usart_2_vcom::init();
+	//Buffer used for recieve and transmit
+	uint8_t buffer_arr[1] = {'X'};
+	//Output midi to com port
+	while (1){
+		while (!Usart_1::is_data_ready());
+		Usart_1::receive(buffer_arr, sizeof(buffer_arr));
+		Usart_2_vcom::transmit(buffer_arr, sizeof(buffer_arr));
+	}
+}
+
 
 void original_main() {
 	//Tests here
