@@ -502,6 +502,16 @@
               <FileType>8</FileType>
               <FilePath>.\USART1.h</FilePath>
             </File>
+            <File>
+              <FileName>Tests.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Tests.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Tests.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Tests.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1013,6 +1023,16 @@
               <FileName>USART1.h</FileName>
               <FileType>8</FileType>
               <FilePath>.\USART1.h</FilePath>
+            </File>
+            <File>
+              <FileName>Tests.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Tests.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Tests.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Tests.h</FilePath>
             </File>
           </Files>
         </Group>

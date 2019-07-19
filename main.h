@@ -7,8 +7,7 @@
 #include "Filter.h"
 #include "USART1.h"
 #include "USART2_vcom.h"
-//static UART_HandleTypeDef huart2;
-
+#include "Tests.h"
 
 
 

@@ -1,3 +1,6 @@
+#ifndef USART2_vcom_H
+#define USART2_vcom_H 1
+
 #include "stm32f4xx_hal.h"
 
 class Usart_2_vcom {		
@@ -7,3 +10,4 @@ class Usart_2_vcom {
   static void transmit(uint8_t* buffer_ptr, uint16_t size);
 };
 
+#endif
