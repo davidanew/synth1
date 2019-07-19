@@ -1,7 +1,6 @@
 #ifndef USART1_H
 #define USART1_H 1
 
-
 #include "stm32f4xx_hal.h"
 
 class Usart_1 {

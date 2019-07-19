@@ -1,5 +1,8 @@
 /*IIR filter that allows low pass and peaking*/
 
+#ifndef FILTER_H
+#define FILTER_H 1
+
 class Filter {	
 	//from http://www.eecs.umich.edu/courses/eecs206/archive/spring02/notes.dir/iir4.pdf
 	/*
@@ -42,6 +45,8 @@ public:
   [[noreturn]] Filter(Filter &source);
 	float next_sample(float next_x);
 };
+
+#endif
 
 /*
 

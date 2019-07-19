@@ -1,5 +1,8 @@
 /*Controls sound for one keypress (and release)*/
 
+#ifndef VOICE_H
+#define VOICE_H 1
+
 #include "Parameters.h"
 
 extern "C" {
@@ -25,3 +28,5 @@ public:
   ~Voice();
   float get_value(const uint64_t sample_tick);
 };
+
+#endif

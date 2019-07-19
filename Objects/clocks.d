@@ -1,4 +1,4 @@
-./objects/tests.o: Tests.cpp Tests.h Dac.h \
+./objects/clocks.o: Clocks.cpp Clocks.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   RTE\Device\STM32F446RETx\stm32f4xx_hal_conf.h \
   RTE\_Target_1\RTE_Components.h \
@@ -38,17 +38,4 @@
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
-  C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h \
-  Tim.h Hal.h IRQ_objects.h Voice.h Parameters.h Wave.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\math.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\type_traits \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\cstddef \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\version \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\__nullptr \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\limits \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\__undef_macros \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\libcxx\stdlib.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h Filter.h USART1.h \
-  Usart2_vcom.h Clocks.h
+  C:\Users\david\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.13.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h

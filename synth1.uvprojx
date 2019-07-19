@@ -512,6 +512,16 @@
               <FileType>8</FileType>
               <FilePath>.\Tests.h</FilePath>
             </File>
+            <File>
+              <FileName>Clocks.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Clocks.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Clocks.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Clocks.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1033,6 +1043,16 @@
               <FileName>Tests.h</FileName>
               <FileType>8</FileType>
               <FilePath>.\Tests.h</FilePath>
+            </File>
+            <File>
+              <FileName>Clocks.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Clocks.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Clocks.h</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Clocks.h</FilePath>
             </File>
           </Files>
         </Group>

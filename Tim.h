@@ -1,5 +1,8 @@
 /*This sets up the TIM2 timer*/
 
+#ifndef TIM_H
+#define TIM_H 1
+
 extern "C" {
 	#include "stm32f4xx_hal.h"
 }
@@ -13,3 +16,4 @@ public:
 	static uint64_t sample_tick_us();
 };
 
+#endif
