@@ -1,6 +1,8 @@
 #include "USART1.h"
 
-Usart_1::Usart_1(void)
+UART_HandleTypeDef Usart_1::huart1 = {};
+
+void Usart_1::init(void)
 {
 	__HAL_RCC_USART1_CLK_ENABLE();
 	__HAL_RCC_GPIOA_CLK_ENABLE();

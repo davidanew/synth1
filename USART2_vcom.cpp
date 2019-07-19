@@ -1,6 +1,8 @@
 #include "USART2_vcom.h"
 
-Usart_2_vcom::Usart_2_vcom(void)
+UART_HandleTypeDef Usart_2_vcom::huart2 = {};	
+
+void Usart_2_vcom::init(void)
 {
   __HAL_RCC_USART2_CLK_ENABLE();
 	__HAL_RCC_GPIOA_CLK_ENABLE();		
