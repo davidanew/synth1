@@ -24,9 +24,15 @@ class Voice {
 	
 public:		
   Voice(const float sample_tick_freq, const Parameters &parameters_arg, uint32_t freq, const float &velocity_arg);
-  [[noreturn]] Voice(Voice &source);
-  ~Voice();
+//TODO This has been enabled for STL
+//  [[noreturn]] Voice(Voice &source);
+//  ~Voice();
   float get_value(const uint64_t sample_tick);
+//TODO: delete if not needed
+	bool operator<(const Voice& rhs) {return true;}
+	bool operator==(const Voice& rhs) { return true; }
+
+
 };
 
 #endif

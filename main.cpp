@@ -9,37 +9,16 @@ be audible
 
 #include "main.h"
 
-
 //One voice for each key press
+//TODO: move voice bank to cpp vector and put this in main
 const uint32_t num_voices {16};
 
-void output_sample (Voice** voice_array, const uint64_t sample_tick_local, Dac &dac1, Filter &filter)
-//voice array is a pointer to pointer to voice objects
-{
-
-	uint32_t i {0};
-	float total {0};
-	//Loop though all voices and get the sample for the valid voices
-	//Add to total output value
-	for (i=0 ; i<num_voices ; i++){
-		if (voice_array[i] != nullptr) {
-			total += (float) 1 * voice_array[i]->get_value(sample_tick_local);
-		}
-	}
-	//const float dac_value_float = voice_array[0]->get_value(sample_tick_local);
-	//_rel means value from 0 to 1
-	const float total_rel = total * (float) 0.5 + (float) 0.5; 	
-	const float filtered_rel = filter.next_sample(total_rel);
-	//dac2_led.set_value_rel(filtered_rel);
-	//Output the computed sample to DAC
-	dac1.set_value_rel(filtered_rel);
-}
-
+//void output_sample (std::unordered_map<int, Voice> voice_map, const uint64_t sample_tick_local, Dac &dac1, Filter &filter);
 
 int main () {
 	/************Tests here ******************/
 	//Tests::uart();
-	//Tests::uart_fast();
+	Tests::uart_fast();
 	//Tests::original_main();
 	/**********End of tests *****************/
 	
@@ -54,11 +33,11 @@ int main () {
 	Dac dac1(DAC_CHANNEL_1);
 	//currently using dac channel 2 to measure run loop execution time
 	Dac dac2_led(DAC_CHANNEL_2);
-
 	//Stores last processed sample
 	uint64_t sample_tick_local = 0;
 	//All current voices, uses dynamic binding
-	Voice* voice_array[num_voices] = {nullptr};
+	//Voice* voice_array[num_voices] = {nullptr};
+	//std::unordered_map<int , Voice> voice_map ;
 	//Holds parameters that are common to all voices
 	Parameters parameters;
 	//TODO: Filter will need to be updated on dial change
@@ -86,32 +65,49 @@ int main () {
 	while(1){
 		{//handle midi
 			if (Usart_1::is_data_ready()){
-				try{	
-					if (voice_array[0] == nullptr) {
-						voice_array[0] = new Voice(40000,parameters, 1000, 1.0);
-					}
+/*
+				if(voice_map.find("C3") == voice_map.end()){
+					voice_map["C3"] = Voice(40000,parameters, 1000, 1.0);
+					//voice_map.emplace(40000,parameters, 1000, 1.0)
 				}
-				catch(...){
-					//error
-					while(1);
-				}				
+*/
 			}		
 		}
 		//wait for next sample tick
 		while (IRQ_objects::sample_tick <= sample_tick_local){} 
-		
 		//Indicates processing started
 		dac2_led.high();
 		//Reset variable for next sample
 		sample_tick_local = IRQ_objects::sample_tick;	
-		output_sample(voice_array,sample_tick_local,dac1,filter);		
+		//output_sample(voice_map,sample_tick_local,dac1,filter);		
 		dac2_led.low();	
 	}
 }
 
 
 
+//TODO: how to do constant referece?
+//void output_sample (std::unordered_map<int, Voice> voice_map, const uint64_t sample_tick_local, Dac &dac1, Filter &filter)
+//{
+//	//uint32_t i {0};
+//	float total {0};
+//	//Loop though all voices and get the sample for the valid voices
+//	//Add to total output value
+//	//
+//	//for (i=0 ; i<num_voices ; i++){
+//	//	if (voice_array[i] != nullptr) {
+//	//		total += (float) 1 * voice_array[i]->get_value(sample_tick_local);
+//	//	}
+//	//}
+//	
+//	//for (const Voice& thisvoice : voice_map){
+//	//}
+//	
+//	std::unordered_map<int, Voice>::iterator my_iter = voice_map.begin();
 
-
-
-
+//	//_rel means value from 0 to 1
+//	const float total_rel = total * (float) 0.5 + (float) 0.5; 	
+//	const float filtered_rel = filter.next_sample(total_rel);
+//	//Output the computed sample to DAC
+//	dac1.set_value_rel(filtered_rel);
+//}

@@ -9,17 +9,21 @@ Voice::Voice(const float sample_tick_freq, const Parameters &parameters_arg, uin
 	phase_rel_per_tick_1 = freq_1/sample_tick_freq;
 	phase_rel_per_tick_2 = freq_2/sample_tick_freq;
 }
-	
+
+/*
 Voice::Voice(Voice &source){
 	//error on copy
 	(void)source;
 	while(1);//error on copy
 }
 
+
+//TODO: think about parameters de-init - should be ok not to handle here
 Voice::~Voice(){
 	//Not needed
 	//Pointer to voices is handled in parameters
 }
+*/
 
 //rename to get_sample
 float Voice::get_value(const uint64_t sample_tick) {
