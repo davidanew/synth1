@@ -1,4 +1,4 @@
-#include "USART1.h"
+#include "Usart_1.h"
 
 UART_HandleTypeDef Usart_1::huart1 = {};
 
@@ -12,7 +12,7 @@ void Usart_1::init(void)
 	GPIO_InitStruct.Pull = GPIO_PULLUP;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
 	GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
-	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);	
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 	huart1.Instance = USART1;
 	huart1.Init.BaudRate = 31250;
 	huart1.Init.WordLength = UART_WORDLENGTH_8B;
@@ -47,5 +47,3 @@ Usart_1::Usart_1(){
 	//error on object creation
 	while(1);
 }
-
-

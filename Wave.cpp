@@ -3,7 +3,7 @@
 //Assign memory and ptr to hold waveform data
 void Wave::set_ptr(float* &data_ptr){
 	try{		
-		if (data_ptr == nullptr)
+//		if (data_ptr == nullptr)
 	    data_ptr = new float[num_samples];
 	}
 	catch(...){
@@ -12,9 +12,6 @@ void Wave::set_ptr(float* &data_ptr){
 }
 
 Wave::Wave(){
-}
-//Not deallocating waveforms as they are always needed
-Wave::~Wave(){
 }
 
 Wave::Wave(Wave &source){//error on copy
@@ -32,14 +29,21 @@ float Wave::get_value_wptr(float* data_ptr, float phase_rel) const {
 		while(1);
 }
 
-Square::Square(){
-	Wave::set_ptr(data_ptr);
-	fill_memory();
+void Square::init_storage(){
+	Square();
+}
+
+Square::Square() {
+	//memory fill only done on first use
+	//pointer is static
+	if (data_ptr == nullptr)
+	{
+		Wave::set_ptr(data_ptr);
+		fill_memory();
+	}
 }
 
 float*  Square::data_ptr = nullptr;
-Square::~Square(){
-}
 
 //Fill memory with square waves
 void Square::fill_memory(){
@@ -58,25 +62,28 @@ float Square::get_value(float phase_rel) const {
 }
 
 Sine::Sine(){
-	Wave::set_ptr(data_ptr);
-	fill_memory();
+	if (data_ptr == nullptr)
+	{
+		Wave::set_ptr(data_ptr);
+		fill_memory();
+	}
 }
+
+void Sine::init_storage() {
+	Sine();
+}
+
 
 float*  Sine::data_ptr = nullptr;
-
-Sine::~Sine(){
-}
 
 void Sine::fill_memory(){
 	uint32_t i {0};
 	for(i=0 ; i < num_samples ; i++){
 		float phase_radians = (float)i/(float)num_samples  * (float) 6.28318530718;
-		//uint32_t value = (uint32_t) ((float)0xFFF*(0.5+0.5*sin(phase_radians)));
 		float value = (float) sin(phase_radians);
 		data_ptr[i] = value;	
 	}
 }
-
 
 float Sine::get_value(float phase_rel) const {
 	return Wave::get_value_wptr(data_ptr,phase_rel);
@@ -86,9 +93,6 @@ Noise::Noise(){
 }
 
 float*  Noise::data_ptr = nullptr;
-
-Noise::~Noise(){
-}
 
 void Noise::fill_memory(){
 }

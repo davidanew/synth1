@@ -3,16 +3,13 @@
 #include "Hal.h"
 #include "IRQ_objects.h"
 #include "Voice.h"
-#include "Parameters.h"
+#include "Global_parameters.h"
 #include "Filter.h"
-#include "USART1.h"
-#include "USART2_vcom.h"
+#include "Usart_1.h"
+#include "Usart_2_vcom.h"
 #include "Tests.h"
-//#include <set>
-//#include <unordered_map>
-//#include <string>
-//#include <sstream>
-//#include <iostream>
+#include <unordered_map>
+
 
 
 
