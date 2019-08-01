@@ -1,4 +1,7 @@
 # synth1
+
+Now moved to: https://github.com/davidanew/synth1_vs
+
 C++ Embedded Synthesizer - work in progress!
 
 Audio sythesiser for STM32 microcontroller
